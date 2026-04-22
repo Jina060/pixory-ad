@@ -1,49 +1,74 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef, useEffect, useState } from "react";
+import { useRef } from "react";
 import Image from "next/image";
 
 const projects = [
   {
     name: "Codelin",
-    description: "File taxes 60% faster — effortless and intuitive",
+    description: "Describe what you want to build - Codelin generates production-ready code, UI, logic in seconds.",
     image: "Codelin.png",
   },
   {
     name: "Flowpay",
-    description: "Serving clients seamlessly across multiple regions",
+    description: "FlowPay helps you track spending, automate savings, and grow healthier financial habits all in one simple app.",
     image: "Flowpay.png",
   },
   {
-    name: "Lumi",
-    description: "Building family trust through compassionate health care",
+    name: "Lumi Solar",
+    description: "Harnessing renewable power through advanced solar, wind, and next-generation energy systems.",
     image: "Lumi.png",
   },
   {
     name: "Motionx",
-    description: "A bold creative presence built to attract premium clients",
+    description: "Personalized training plans, certified coaches, and real results you can see and feel.",
     image: "Motionx.png",
   },
   {
     name: "Mullian3",
-    description: "Streamlined fintech UI driving faster payment adoption",
-    image: "Mullian 3.png",
+    description: "Step into the next generation of the internet powered by secure, transparent, and decentralized technologies.",
+    image: "Mullian3.png",
   },
   {
-    name: "RapidLogix",
-    description: "Logistics platform scaled for high-volume operations",
-    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80",
+    name: "Delux Spa",
+    description: "Revitalize your skin with premium skincare treatments that enhance your natural beauty.",
+    image: "DeluxSpa.png",
   },
   {
-    name: "Emmanuel Works",
-    description: "Portfolio that converts visitors into paying clients",
-    image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=800&q=80",
+    name: "Grower Ai",
+    description: "Simple AI tool designed to help you scale your business ",
+    image: "GrowerAi.png",
   },
   {
-    name: "JKP Solutions",
-    description: "Enterprise-grade web presence with measurable ROI",
-    image: "https://images.unsplash.com/photo-1553484771-047a44eee27b?w=800&q=80",
+    name: "kimi.Ai",
+    description: "The All-in-one intelligence platform for data- driven organization",
+    image: "kimiai.png",
+  },
+  {
+    name: "Marinex",
+    description: "Connecting continents with precision logistics and operational excellence.",
+    image: "Marinex.png",
+  },
+  {
+    name: "Monify",
+    description: "Manage payments, Manage your money securely with fast transfers, savings plans, and 24/7 digital banking services.",
+    image: "Monify.png",
+  },
+  {
+    name: "Nexaron",
+    description: "Build in Web3 with ease using our platform’s multi-chain connectivity and AI-driven smart contracts.",
+    image: "Nexaron.png",
+  },
+  {
+    name: "Roofy",
+    description: "Professional roofing services for homes and businesses installation, repairs, and maintenance you can rely on.",
+    image: "Roofy.png",
+  },
+  {
+    name: "Sivour Kle",
+    description: "Experience skincare and cosmetics crafted to enhance your natural radiance with luxury ingredients and flawless results.",
+    image: "SivourKle.png",
   },
 ];
 
@@ -87,13 +112,6 @@ const ProjectCard = ({ project }: { project: typeof projects[0] }) => (
       </div>
 
      
-
-      {/* Corner accent */}
-      <div className="absolute top-0 left-0 w-7 h-7 pointer-events-none">
-        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-          <path d="M20 2H2V20" stroke="#2201DC" strokeWidth="1.5" strokeOpacity="0.5" />
-        </svg>
-      </div>
     </div>
   </div>
 );
@@ -125,72 +143,36 @@ const DesktopScroll = () => (
 );
 
 // Mobile: slow one-card-at-a-time auto scroll
-const MobileScroll = () => {
-  const [current, setCurrent] = useState(0);
-  const total = projects.length;
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % total);
-    }, 3800);
-    return () => clearInterval(timer);
-  }, [total]);
-
-  return (
-    <div className="sm:hidden w-full overflow-hidden">
-      <div className="relative w-full" style={{ height: 'calc(75vw * 5/4 + 16px)' }}>
-        {projects.map((project, i) => {
-          const offset = i - current;
-          // Handle wrap-around
-          const adjustedOffset =
-            offset > total / 2 ? offset - total :
-            offset < -total / 2 ? offset + total : offset;
-
-          return (
-            <motion.div
-              key={i}
-              className="absolute inset-0"
-              animate={{
-                x: `${adjustedOffset * 100}%`,
-                opacity: adjustedOffset === 0 ? 1 : 0.3,
-                scale: adjustedOffset === 0 ? 1 : 0.92,
-              }}
-              transition={{
-                duration: 0.9,
-                ease: [0.32, 0.72, 0, 1],
-              }}
-            >
-              <ProjectCard project={project} />
-            </motion.div>
-          );
-        })}
-      </div>
-
-      {/* Dot indicators */}
-      <div className="flex justify-center gap-2 mt-5">
-        {projects.map((_, i) => (
-          <motion.div
-            key={i}
-            className="rounded-full bg-white"
-            animate={{
-              width: i === current ? 20 : 6,
-              opacity: i === current ? 1 : 0.25,
-            }}
-            style={{ height: 6 }}
-            transition={{ duration: 0.3 }}
-          />
-        ))}
-      </div>
+const MobileScroll = () => (
+  <div className="sm:hidden overflow-hidden w-full">
+    <style>{`
+      @keyframes scrollLeftMobile {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+      }
+      .scroll-track-mobile {
+        display: flex;
+        gap: 16px;
+        width: max-content;
+        animation: scrollLeftMobile 60s linear infinite;
+      }
+    `}</style>
+    <div className="scroll-track-mobile">
+      {allProjects.map((project, i) => (
+        <ProjectCard key={i} project={project} />
+      ))}
     </div>
-  );
-};
+  </div>
+);
+
+
 
 export default function Portfolio() {
   const headerRef = useRef(null);
   const isInView = useInView(headerRef, { once: true, margin: "-80px" });
 
   return (
-    <section className="relative bg-[#000000] py-20 md:py-32 overflow-hidden">
+    <section className="relative bg-[#000000] py-20 md:py-25 overflow-hidden">
 
       {/* Ambient glow */}
       <div
@@ -218,6 +200,7 @@ export default function Portfolio() {
             <span className="text-white/50 text-xs tracking-widest uppercase">Our Work</span>
           </motion.div>
 
+<div className="flex flex-col md:flex-row md:items-center lg:gap-30">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -232,11 +215,12 @@ export default function Portfolio() {
             initial={{ opacity: 0, y: 16 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-white/50 text-base md:text-lg max-w-xl font-light leading-relaxed"
+            className="text-white/50 text-base md:text-lg max-w-md font-light leading-relaxed lg:text-right"
           >
             A growing collection of digital products we&apos;ve designed, built, and launched for ambitious brands around the world.
           </motion.p>
         </div>
+      </div>
       </div>
 
       {/* Scroll tracks — full width, outside the max-w container */}

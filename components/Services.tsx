@@ -9,38 +9,38 @@ const services = [
     title: "Product Design",
     description: "UX Research · UI Design · Prototyping",
     image:
-      "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80",
+      "pd.jpg",
   },
   {
     title: "Frontend Development",
     description:
       "Responsive Websites · Mobile Interfaces",
     image:
-      "https://images.unsplash.com/photo-1587620962725-abab7fe55159?w=800&q=80",
+      "fed.jpg",
   },
   {
     title: "Backend Development",
     description: "Scalable Architecture · API Integrations · Cloud Deployment",
     image:
-      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80",
+      "bed.png",
   },
   {
     title: "No-Code & Fast Launch",
     description: "Framer · Webflow · WordPress · MVP Launches",
     image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
+      "nc.jpg",
   },
   {
     title: "Branding & Graphics Design",
     description: "Logo & Identity · Brand Guidelines",
     image:
-      "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&q=80",
+      "gd.jpg",
   },
   {
     title: "End-To-End Growth",
     description: "Launch Roadmaps · Ongoing Optimization · Dedicated Support",
     image:
-      "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&q=80",
+      "t2.jpg",
   },
 ];
 
@@ -200,7 +200,7 @@ export default function Services() {
   const isInView = useInView(headerRef, { once: true, margin: "-80px" });
 
   return (
-    <section className="relative bg-[#000000] py-20 md:py-32 overflow-hidden">
+    <section className="relative bg-[#000000] py-20 md:py-25 overflow-hidden">
       <NodeGrid />
 
       {/* Ambient glow */}
@@ -232,6 +232,8 @@ export default function Services() {
               Our Services
             </span>
           </motion.div>
+<div className="flex flex-col md:flex-row md:items-center lg:gap-40">
+
 
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -247,11 +249,12 @@ export default function Services() {
             initial={{ opacity: 0, y: 16 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-white/50 text-base md:text-lg max-w-xl font-light leading-relaxed"
+            className="text-white/50 text-base md:text-lg max-w-md font-light leading-relaxed lg:text-right"
           >
             We partner with ambitious brands to bring ideas to life — from
             stunning interfaces to powerful backend systems.
           </motion.p>
+        </div>
         </div>
 
         {/* Services grid */}

@@ -33,7 +33,7 @@ const RotatingWord = () => {
     <span
       ref={textRef}
       className="inline-block"
-      style={{ opacity: 1, transform: 'translateY(0)', color: '#2201DC' }}
+      style={{ opacity: 1, transform: 'translateY(0)', color: '#FE5A7A' }}
     >
       {WORDS[0]}
     </span>
@@ -306,7 +306,7 @@ export default function Hero() {
                   animate={{ x: '200%' }}
                   transition={{ duration: 1.4, repeat: Infinity, repeatDelay: 2.5, ease: "easeInOut" }}
                 />
-                <span className="relative z-10">START A PROJECT</span>
+                <span className="relative z-10">BOOK A CALL</span>
               </motion.button>
             </a>
             <motion.p

@@ -62,7 +62,6 @@ const StarRating = ({ delay }: { delay: number }) => (
 
 const ReviewCard = ({ review, index }: { review: typeof reviews[0]; index: number }) => {
   const delay = (index % 3) * 0.12;
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
@@ -72,15 +71,11 @@ const ReviewCard = ({ review, index }: { review: typeof reviews[0]; index: numbe
       whileHover={{ y: -5, transition: { duration: 0.2 } }}
       className="relative group flex flex-col h-full"
     >
-      {/* Hover border glow */}
       <div
         className="absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
         style={{ background: 'linear-gradient(135deg, rgba(34,1,220,0.5), rgba(34,1,220,0.1))' }}
       />
-
       <div className="relative flex flex-col h-full rounded-2xl border border-white/8 bg-white/3 p-7 overflow-hidden">
-
-        {/* Corner accents */}
         <div className="absolute top-0 left-0 w-8 h-8 pointer-events-none">
           <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
             <path d="M24 2H2V24" stroke="#2201DC" strokeWidth="1.5" strokeOpacity="0.5" />
@@ -91,36 +86,15 @@ const ReviewCard = ({ review, index }: { review: typeof reviews[0]; index: numbe
             <path d="M8 30H30V8" stroke="#2201DC" strokeWidth="1.5" strokeOpacity="0.25" />
           </svg>
         </div>
-
-        {/* Profile top-left */}
         <div className="flex items-center gap-3">
           <div className="relative shrink-0">
-            <Image
-              src={review.avatar}
-              alt={review.name}
-              width={48}
-              height={48}
-              unoptimized
-              className="w-12 h-12 rounded-full object-cover border border-white/10"
-            />
-            <div
-              className="absolute inset-0 rounded-full"
-              style={{ boxShadow: '0 0 14px rgba(34,1,220,0.45)' }}
-            />
+            <Image src={review.avatar} alt={review.name} width={48} height={48} unoptimized className="w-12 h-12 rounded-full object-cover border border-white/10" />
+            <div className="absolute inset-0 rounded-full" style={{ boxShadow: '0 0 14px rgba(34,1,220,0.45)' }} />
           </div>
-          {/* Stars under avatar — stacked */}
           <StarRating delay={delay} />
         </div>
-
-        {/* Review text */}
-        <p className="text-white/75 text-base leading-relaxed mt-6 flex-1 font-light">
-          &ldquo;{review.text}&rdquo;
-        </p>
-
-        {/* Divider */}
+        <p className="text-white/75 text-base leading-relaxed mt-6 flex-1 font-light">&ldquo;{review.text}&rdquo;</p>
         <div className="w-full h-px bg-white/8 my-5" />
-
-        {/* Name & role */}
         <div>
           <p className="text-white text-sm font-medium">{review.name}</p>
           <p className="text-white/40 text-xs mt-0.5">{review.role}</p>
@@ -156,10 +130,9 @@ export default function Results() {
   const isInView = useInView(headerRef, { once: true, margin: "-80px" });
 
   return (
-    <section className="relative bg-[#000000] py-20 md:py-32 overflow-hidden">
+    <section className="relative bg-[#000000] py-20 md:py-25">
       <NodeGrid />
 
-      {/* Ambient glow */}
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-175 h-75 pointer-events-none"
         style={{
@@ -169,7 +142,6 @@ export default function Results() {
       />
 
       <div className="max-w-7xl mx-auto px-6">
-
         {/* Header */}
         <div ref={headerRef} className="mb-16 md:mb-20">
           <motion.div
@@ -186,30 +158,102 @@ export default function Results() {
             <span className="text-white/50 text-xs tracking-widest uppercase">Results</span>
           </motion.div>
 
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-4xl md:text-5xl lg:text-6xl xl:text-[72px] font-bold md:font-normal text-white leading-tight md:leading-tight mb-4"
-          >
-            What It&apos;s Like <br className="hidden sm:block" />
-            <span className="text-[#FE5A7A]">Working</span> With Us
-          </motion.h2>
+          <div className="flex flex-col md:flex-row md:items-center lg:gap-57">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              className="text-4xl md:text-5xl lg:text-6xl xl:text-[72px] font-bold md:font-normal text-white leading-tight md:leading-tight mb-4"
+            >
+              What It&apos;s Like <br className="hidden sm:block" />
+              <span className="text-[#FE5A7A]">Working</span> With Us
+            </motion.h2>
 
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-white/50 text-base md:text-lg max-w-xl font-light leading-relaxed"
-          >
-            Trusted by forward-thinking brands across industries to design, build, and launch products that perform.
-          </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              className="text-white/50 text-base md:text-lg max-w-md font-light leading-relaxed lg:text-right"
+            >
+              Trusted by forward-thinking brands across industries to design, build, and launch products that perform.
+            </motion.p>
+          </div>
         </div>
 
-        {/* Cards grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        {/* Desktop grid — unchanged */}
+        <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {reviews.map((review, i) => (
             <ReviewCard key={i} review={review} index={i} />
+          ))}
+        </div>
+
+        {/* Mobile stacking — pure CSS sticky, no framer scroll tracking */}
+        <div className="sm:hidden">
+          <style>{`
+            .stack-card {
+              position: sticky;
+              transform-origin: top center;
+            }
+            .stack-card:nth-child(1) { top: 72px; z-index: 1; }
+            .stack-card:nth-child(2) { top: 82px; z-index: 2; }
+            .stack-card:nth-child(3) { top: 92px; z-index: 3; }
+            .stack-card:nth-child(4) { top: 102px; z-index: 4; }
+            .stack-card:nth-child(5) { top: 112px; z-index: 5; }
+            .stack-card:nth-child(6) { top: 122px; z-index: 6; }
+          `}</style>
+
+          {reviews.map((review, i) => (
+            <div key={i} className="stack-card mb-4">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.5, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                className="rounded-2xl border border-white/8 bg-[#000000] p-6 relative overflow-hidden"
+              >
+                {/* Corner accents */}
+                <div className="absolute top-0 left-0 w-8 h-8 pointer-events-none">
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <path d="M24 2H2V24" stroke="#2201DC" strokeWidth="1.5" strokeOpacity="0.5" />
+                  </svg>
+                </div>
+                <div className="absolute bottom-0 right-0 w-8 h-8 pointer-events-none">
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <path d="M8 30H30V8" stroke="#2201DC" strokeWidth="1.5" strokeOpacity="0.25" />
+                  </svg>
+                </div>
+
+                {/* Counter */}
+                <span className="absolute top-4 right-4 text-white/20 text-xs font-mono">
+                  {String(i + 1).padStart(2, '0')}/{String(reviews.length).padStart(2, '0')}
+                </span>
+
+                <div className="flex items-center gap-3">
+                  <div className="relative shrink-0">
+                    <Image src={review.avatar} alt={review.name} width={44} height={44} unoptimized className="w-11 h-11 rounded-full object-cover border border-white/10" />
+                    <div className="absolute inset-0 rounded-full" style={{ boxShadow: '0 0 14px rgba(34,1,220,0.45)' }} />
+                  </div>
+                  <div className="flex gap-1">
+                    {[...Array(5)].map((_, j) => (
+                      <svg key={j} width="13" height="13" viewBox="0 0 24 24" fill="white">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                      </svg>
+                    ))}
+                  </div>
+                </div>
+
+                <p className="text-white/75 text-sm leading-relaxed mt-5 font-light">
+                  &ldquo;{review.text}&rdquo;
+                </p>
+
+                <div className="w-full h-px bg-white/8 my-4" />
+
+                <div>
+                  <p className="text-white text-sm font-medium">{review.name}</p>
+                  <p className="text-white/40 text-xs mt-0.5">{review.role}</p>
+                </div>
+              </motion.div>
+            </div>
           ))}
         </div>
 

@@ -34,7 +34,7 @@ export default function Navbar() {
     <nav
       ref={navRef}
       className="w-full bg-[#020617] px-6 py-4 fixed top-0 left-0 right-0 z-50"
-      style={{ boxShadow: '0 4px 4px 0 rgba(22, 37, 76, 0.38)' }}
+      style={{ boxShadow: '0 4px 4px 0 rgba(22, 37, 76, 0.38)'}}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo */}
@@ -51,7 +51,7 @@ export default function Navbar() {
         {/* Desktop Contact Button */}
         <a href="https://calendly.com/pixoryflow-info/30min" className="hidden lg:block">
           <button className="bg-[#FE5A7A] hover:bg-[#fe4a6a] text-white font-sans text-sm font-medium px-8 py-3 rounded-full transition-colors uppercase tracking-wide cursor-pointer">
-            CONTACT US
+            START A PROJECT
           </button>
         </a>
 

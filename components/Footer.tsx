@@ -88,7 +88,7 @@ const Footer = () => {
             {/* Logo */}
             <div className="w-28.75 h-10.75 flex items-center">
               <Image
-                src="/images/logo-dark.png"
+                src="/logo-dark.png"
                 alt="Pixory Flow Logo"
                 width={115}
                 height={43}
