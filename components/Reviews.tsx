@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 
 const reviews = [
@@ -94,6 +94,115 @@ const ReviewCard = ({ review, index }: { review: typeof reviews[0]; index: numbe
   );
 };
 
+const MobileCarousel = () => {
+  const [current, setCurrent] = useState(0);
+
+  return (
+    <div className="w-full relative">
+
+      {/* Side arrows */}
+      <div className="absolute inset-y-0 left-0 flex items-center z-10" style={{ left: '-10px' }}>
+        <motion.button
+          onClick={() => setCurrent((prev) => (prev - 1 + reviews.length) % reviews.length)}
+          whileHover={{ scale: 1.15 }}
+          whileTap={{ scale: 0.9 }}
+          className="flex items-center justify-center w-8 h-8 rounded-full"
+          style={{
+            background: 'radial-gradient(circle, rgba(254,90,122,0.15) 0%, transparent 70%)',
+            border: '1px solid rgba(254,90,122,0.2)',
+          }}
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+            <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="rgba(254,90,122,0.6)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </motion.button>
+      </div>
+
+      {/* Card — with side padding so arrows don't overlap text */}
+      <div className="px-6">
+        <motion.div
+          key={current}
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+          className="rounded-2xl border border-white/8 bg-[#000000] p-6 relative overflow-hidden"
+        >
+          {/* Counter */}
+          <span className="absolute top-4 right-4 text-white/20 text-xs font-mono">
+            {String(current + 1).padStart(2, '0')}/{String(reviews.length).padStart(2, '0')}
+          </span>
+
+          <div className="flex items-center gap-3">
+            <div className="relative shrink-0">
+              <Image
+                src={reviews[current].avatar}
+                alt={reviews[current].name}
+                width={44}
+                height={44}
+                unoptimized
+                className="w-11 h-11 rounded-full object-cover border border-white/10"
+              />
+              <div className="absolute inset-0 rounded-full" style={{ boxShadow: '0 0 14px rgba(34,1,220,0.45)' }} />
+            </div>
+            <div className="flex gap-1">
+              {[...Array(5)].map((_, j) => (
+                <svg key={j} width="13" height="13" viewBox="0 0 24 24" fill="white">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                </svg>
+              ))}
+            </div>
+          </div>
+
+          <p className="text-white/75 text-sm leading-relaxed mt-5 font-light">
+            &ldquo;{reviews[current].text}&rdquo;
+          </p>
+
+          <div className="w-full h-px bg-white/8 my-4" />
+
+          <div>
+            <p className="text-white text-sm font-medium">{reviews[current].name}</p>
+            <p className="text-white/40 text-xs mt-0.5">{reviews[current].role}</p>
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Right arrow */}
+      <div className="absolute inset-y-0 right-0 flex items-center z-10" style={{ right: '-10px' }}>
+        <motion.button
+          onClick={() => setCurrent((prev) => (prev + 1) % reviews.length)}
+          whileHover={{ scale: 1.15 }}
+          whileTap={{ scale: 0.9 }}
+          className="flex items-center justify-center w-8 h-8 rounded-full"
+          style={{
+            background: 'radial-gradient(circle, rgba(254,90,122,0.15) 0%, transparent 70%)',
+            border: '1px solid rgba(254,90,122,0.2)',
+          }}
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="rgba(254,90,122,0.6)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </motion.button>
+      </div>
+
+      {/* Dots */}
+      <div className="flex justify-center gap-2 mt-6">
+        {reviews.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrent(i)}
+            className="rounded-full transition-all duration-300"
+            style={{
+              width: i === current ? 20 : 6,
+              height: 6,
+              background: i === current ? '#FE5A7A' : 'rgba(255,255,255,0.2)',
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
 const NodeGrid = () => (
   <div className="absolute inset-0 pointer-events-none overflow-hidden">
     {[...Array(6)].map((_, i) => (
@@ -170,81 +279,16 @@ export default function Results() {
           </div>
         </div>
 
-        {/* Desktop grid — unchanged */}
+        {/* Desktop grid */}
         <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {reviews.map((review, i) => (
             <ReviewCard key={i} review={review} index={i} />
           ))}
         </div>
 
-        {/* Mobile stacking */}
+        {/* Mobile carousel */}
         <div className="sm:hidden">
-          <style>{`
-            .stacking-wrapper {
-              display: flex;
-              flex-direction: column;
-              padding-top: 80px;
-              padding-bottom: 1000px;
-              max-width: 100%;
-              min-height: 300vh;
-            }
-            .stacking-card {
-              position: sticky;
-              margin-bottom: 0;
-            }
-            .stacking-card:nth-child(1) { top: 80px; z-index: 1; }
-            .stacking-card:nth-child(2) { top: 90px; z-index: 2; }
-            .stacking-card:nth-child(3) { top: 100px; z-index: 3; }
-            .stacking-card:nth-child(4) { top: 110px; z-index: 4; }
-            .stacking-card:nth-child(5) { top: 120px; z-index: 5; }
-            .stacking-card:nth-child(6) { top: 130px; z-index: 6; }
-          `}</style>
-
-          <div className="stacking-wrapper">
-            {reviews.map((review, i) => (
-              <div key={i} className="stacking-card">
-                <div className="rounded-2xl border border-white/8 bg-[#000000] p-6 relative overflow-hidden">
-
-                  {/* Counter */}
-                  <span className="absolute top-4 right-4 text-white/20 text-xs font-mono">
-                    {String(i + 1).padStart(2, '0')}/{String(reviews.length).padStart(2, '0')}
-                  </span>
-
-                  <div className="flex items-center gap-3">
-                    <div className="relative shrink-0">
-                      <Image
-                        src={review.avatar}
-                        alt={review.name}
-                        width={44}
-                        height={44}
-                        unoptimized
-                        className="w-11 h-11 rounded-full object-cover border border-white/10"
-                      />
-                      <div className="absolute inset-0 rounded-full" style={{ boxShadow: '0 0 14px rgba(34,1,220,0.45)' }} />
-                    </div>
-                    <div className="flex gap-1">
-                      {[...Array(5)].map((_, j) => (
-                        <svg key={j} width="13" height="13" viewBox="0 0 24 24" fill="white">
-                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                        </svg>
-                      ))}
-                    </div>
-                  </div>
-
-                  <p className="text-white/75 text-sm leading-relaxed mt-5 font-light">
-                    &ldquo;{review.text}&rdquo;
-                  </p>
-
-                  <div className="w-full h-px bg-white/8 my-4" />
-
-                  <div>
-                    <p className="text-white text-sm font-medium">{review.name}</p>
-                    <p className="text-white/40 text-xs mt-0.5">{review.role}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+          <MobileCarousel />
         </div>
 
       </div>
