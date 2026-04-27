@@ -76,8 +76,6 @@ const ReviewCard = ({ review, index }: { review: typeof reviews[0]; index: numbe
         style={{ background: 'linear-gradient(135deg, rgba(34,1,220,0.5), rgba(34,1,220,0.1))' }}
       />
       <div className="relative flex flex-col h-full rounded-2xl border border-white/8 bg-white/3 p-7 overflow-hidden">
-       
-        
         <div className="flex items-center gap-3">
           <div className="relative shrink-0">
             <Image src={review.avatar} alt={review.name} width={48} height={48} unoptimized className="w-12 h-12 rounded-full object-cover border border-white/10" />
@@ -179,64 +177,74 @@ export default function Results() {
           ))}
         </div>
 
-        {/* Mobile stacking — pure CSS sticky, no framer scroll tracking */}
+        {/* Mobile stacking */}
         <div className="sm:hidden">
           <style>{`
-            .stack-card {
-              position: sticky;
-              transform-origin: top center;
+            .stacking-wrapper {
+              display: flex;
+              flex-direction: column;
+              padding-top: 80px;
+              padding-bottom: 1000px;
+              max-width: 100%;
+              min-height: 300vh;
             }
-            .stack-card:nth-child(1) { top: 72px; z-index: 1; }
-            .stack-card:nth-child(2) { top: 82px; z-index: 2; }
-            .stack-card:nth-child(3) { top: 92px; z-index: 3; }
-            .stack-card:nth-child(4) { top: 102px; z-index: 4; }
-            .stack-card:nth-child(5) { top: 112px; z-index: 5; }
-            .stack-card:nth-child(6) { top: 122px; z-index: 6; }
+            .stacking-card {
+              position: sticky;
+              margin-bottom: 0;
+            }
+            .stacking-card:nth-child(1) { top: 80px; z-index: 1; }
+            .stacking-card:nth-child(2) { top: 90px; z-index: 2; }
+            .stacking-card:nth-child(3) { top: 100px; z-index: 3; }
+            .stacking-card:nth-child(4) { top: 110px; z-index: 4; }
+            .stacking-card:nth-child(5) { top: 120px; z-index: 5; }
+            .stacking-card:nth-child(6) { top: 130px; z-index: 6; }
           `}</style>
 
-          {reviews.map((review, i) => (
-            <div key={i} className="stack-card mb-4">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.5, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
-                className="rounded-2xl border border-white/8 bg-[#000000] p-6 relative overflow-hidden"
-              >
-                
+          <div className="stacking-wrapper">
+            {reviews.map((review, i) => (
+              <div key={i} className="stacking-card">
+                <div className="rounded-2xl border border-white/8 bg-[#000000] p-6 relative overflow-hidden">
 
-                {/* Counter */}
-                <span className="absolute top-4 right-4 text-white/20 text-xs font-mono">
-                  {String(i + 1).padStart(2, '0')}/{String(reviews.length).padStart(2, '0')}
-                </span>
+                  {/* Counter */}
+                  <span className="absolute top-4 right-4 text-white/20 text-xs font-mono">
+                    {String(i + 1).padStart(2, '0')}/{String(reviews.length).padStart(2, '0')}
+                  </span>
 
-                <div className="flex items-center gap-3">
-                  <div className="relative shrink-0">
-                    <Image src={review.avatar} alt={review.name} width={44} height={44} unoptimized className="w-11 h-11 rounded-full object-cover border border-white/10" />
-                    <div className="absolute inset-0 rounded-full" style={{ boxShadow: '0 0 14px rgba(34,1,220,0.45)' }} />
+                  <div className="flex items-center gap-3">
+                    <div className="relative shrink-0">
+                      <Image
+                        src={review.avatar}
+                        alt={review.name}
+                        width={44}
+                        height={44}
+                        unoptimized
+                        className="w-11 h-11 rounded-full object-cover border border-white/10"
+                      />
+                      <div className="absolute inset-0 rounded-full" style={{ boxShadow: '0 0 14px rgba(34,1,220,0.45)' }} />
+                    </div>
+                    <div className="flex gap-1">
+                      {[...Array(5)].map((_, j) => (
+                        <svg key={j} width="13" height="13" viewBox="0 0 24 24" fill="white">
+                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                        </svg>
+                      ))}
+                    </div>
                   </div>
-                  <div className="flex gap-1">
-                    {[...Array(5)].map((_, j) => (
-                      <svg key={j} width="13" height="13" viewBox="0 0 24 24" fill="white">
-                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                      </svg>
-                    ))}
+
+                  <p className="text-white/75 text-sm leading-relaxed mt-5 font-light">
+                    &ldquo;{review.text}&rdquo;
+                  </p>
+
+                  <div className="w-full h-px bg-white/8 my-4" />
+
+                  <div>
+                    <p className="text-white text-sm font-medium">{review.name}</p>
+                    <p className="text-white/40 text-xs mt-0.5">{review.role}</p>
                   </div>
                 </div>
-
-                <p className="text-white/75 text-sm leading-relaxed mt-5 font-light">
-                  &ldquo;{review.text}&rdquo;
-                </p>
-
-                <div className="w-full h-px bg-white/8 my-4" />
-
-                <div>
-                  <p className="text-white text-sm font-medium">{review.name}</p>
-                  <p className="text-white/40 text-xs mt-0.5">{review.role}</p>
-                </div>
-              </motion.div>
-            </div>
-          ))}
+              </div>
+            ))}
+          </div>
         </div>
 
       </div>
