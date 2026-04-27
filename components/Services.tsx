@@ -37,7 +37,7 @@ const services = [
       "gd.jpg",
   },
   {
-    title: "End-To-End Growth",
+    title: "SEO and End-To-End Growth",
     description: "Launch Roadmaps · Ongoing Optimization · Dedicated Support",
     image:
       "t2.jpg",
@@ -84,17 +84,7 @@ const ServiceCard = ({
         }}
       />
 
-      {/* Corner accent top-left */}
-      <div className="absolute top-0 left-0 w-8 h-8 pointer-events-none z-10">
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-          <path
-            d="M24 2H2V24"
-            stroke="#2201DC"
-            strokeWidth="1.5"
-            strokeOpacity="0.6"
-          />
-        </svg>
-      </div>
+      
 
       {/* Corner accent bottom-right */}
       <div className="absolute bottom-0 right-0 w-8 h-8 pointer-events-none z-10">
@@ -249,7 +239,7 @@ export default function Services() {
             initial={{ opacity: 0, y: 16 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-white/50 text-base md:text-lg max-w-md font-light leading-relaxed lg:text-right"
+            className="text-white/50 text-base md:text-lg max-w-md font-light leading-relaxed lg:text-left"
           >
             We partner with ambitious brands to bring ideas to life — from
             stunning interfaces to powerful backend systems.

@@ -90,9 +90,10 @@ const Footer = () => {
               <Image
                 src="/logo-dark.png"
                 alt="Pixory Flow Logo"
-                width={115}
-                height={43}
-                className="object-contain"
+                width={100}
+                height={50}
+                loading="eager"
+                className="object-contain w-auto h-auto"
               />
             </div>
 

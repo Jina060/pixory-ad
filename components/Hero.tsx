@@ -10,7 +10,7 @@ import Crown from './Crown';
 import { motion, animate } from 'framer-motion';
 import { useEffect, useRef } from 'react';
 
-const WORDS = ["Scale", "Convert", "Dominate", "Grow"];
+const WORDS = ["Scale", "Convert", "Grow"];
 
 const RotatingWord = () => {
   const index = useRef(0);

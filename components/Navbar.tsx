@@ -49,11 +49,11 @@ export default function Navbar() {
         </div>
 
         {/* Desktop Contact Button */}
-        <a href="https://calendly.com/pixoryflow-info/30min" className="hidden lg:block">
+        <Link href="/contact-us" className="hidden lg:block">
           <button className="bg-[#FE5A7A] hover:bg-[#fe4a6a] text-white font-sans text-sm font-medium px-8 py-3 rounded-full transition-colors uppercase tracking-wide cursor-pointer">
             START A PROJECT
           </button>
-        </a>
+        </Link>
 
         {/* Mobile Hamburger */}
         <button
@@ -86,7 +86,7 @@ export default function Navbar() {
         <div className="flex flex-col p-6 h-full">
           <Link href="/contact-us" onClick={() => setIsMobileMenuOpen(false)}>
             <button className="w-full bg-[#FE5A7A] hover:bg-[#fe4a6a] text-white font-sans text-sm font-medium px-8 py-3 rounded-full transition-colors uppercase tracking-wide">
-              CONTACT US
+              START A PROJECT
             </button>
           </Link>
         </div>

@@ -215,7 +215,7 @@ export default function Portfolio() {
             initial={{ opacity: 0, y: 16 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-white/50 text-base md:text-lg max-w-md font-light leading-relaxed lg:text-right"
+            className="text-white/50 text-base md:text-lg max-w-md font-light leading-relaxed lg:text-left"
           >
             A growing collection of digital products we&apos;ve designed, built, and launched for ambitious brands around the world.
           </motion.p>

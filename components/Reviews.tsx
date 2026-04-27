@@ -7,37 +7,37 @@ import Image from "next/image";
 const reviews = [
   {
     name: "David Okoro",
-    role: "CEO, Veroem Limited",
+    role: "CEO, Nexaron",
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=84&h=84&fit=crop&auto=format",
     text: "Working with Pixory Flow was a game changer for us. From strategy to launch, their team delivered a product that not only looks incredible but works seamlessly.",
   },
   {
     name: "Amara Diallo",
-    role: "Founder, RapidLogix",
+    role: "Founder, MotionX",
     avatar: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=84&h=84&fit=crop&auto=format",
     text: "The Pixory Flow team understood our vision immediately. They built our platform faster than we thought possible and the result exceeded every expectation.",
   },
   {
     name: "James Kweku",
-    role: "CTO, Paylinx",
+    role: "CTO, FlowPay",
     avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=84&h=84&fit=crop&auto=format",
     text: "Our fintech dashboard needed to be bulletproof. Pixory Flow delivered clean architecture, pixel-perfect UI, and a backend that handles scale without breaking a sweat.",
   },
   {
     name: "Nadia Essien",
-    role: "Head of Brand, TAANMU",
+    role: "Head of Brand, Roofy",
     avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=84&h=84&fit=crop&auto=format",
     text: "Our rebrand needed to feel premium and modern. Pixory Flow nailed the identity system, guidelines, and every piece of collateral. Clients notice the difference immediately.",
   },
   {
     name: "Emmanuel Tabi",
-    role: "CEO, Digital Studio",
+    role: "CEO, Lumi Solar",
     avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=84&h=84&fit=crop&auto=format",
     text: "I've worked with three agencies before Pixory Flow. None came close to this level of communication, quality, and speed. They feel like an extension of our in-house team.",
   },
   {
     name: "Sophia Mensah",
-    role: "Product Manager, DHF",
+    role: "Product Manager, Sivour Kle",
     avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=84&h=84&fit=crop&auto=format",
     text: "From wireframes to a live product in under three weeks. Their no-code expertise helped us validate fast and the handoff was completely smooth. Highly recommend.",
   },
@@ -76,16 +76,8 @@ const ReviewCard = ({ review, index }: { review: typeof reviews[0]; index: numbe
         style={{ background: 'linear-gradient(135deg, rgba(34,1,220,0.5), rgba(34,1,220,0.1))' }}
       />
       <div className="relative flex flex-col h-full rounded-2xl border border-white/8 bg-white/3 p-7 overflow-hidden">
-        <div className="absolute top-0 left-0 w-8 h-8 pointer-events-none">
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-            <path d="M24 2H2V24" stroke="#2201DC" strokeWidth="1.5" strokeOpacity="0.5" />
-          </svg>
-        </div>
-        <div className="absolute bottom-0 right-0 w-8 h-8 pointer-events-none">
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-            <path d="M8 30H30V8" stroke="#2201DC" strokeWidth="1.5" strokeOpacity="0.25" />
-          </svg>
-        </div>
+       
+        
         <div className="flex items-center gap-3">
           <div className="relative shrink-0">
             <Image src={review.avatar} alt={review.name} width={48} height={48} unoptimized className="w-12 h-12 rounded-full object-cover border border-white/10" />
@@ -173,7 +165,7 @@ export default function Results() {
               initial={{ opacity: 0, y: 16 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="text-white/50 text-base md:text-lg max-w-md font-light leading-relaxed lg:text-right"
+              className="text-white/50 text-base md:text-lg max-w-md font-light leading-relaxed lg:text-left"
             >
               Trusted by forward-thinking brands across industries to design, build, and launch products that perform.
             </motion.p>
@@ -211,17 +203,7 @@ export default function Results() {
                 transition={{ duration: 0.5, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
                 className="rounded-2xl border border-white/8 bg-[#000000] p-6 relative overflow-hidden"
               >
-                {/* Corner accents */}
-                <div className="absolute top-0 left-0 w-8 h-8 pointer-events-none">
-                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                    <path d="M24 2H2V24" stroke="#2201DC" strokeWidth="1.5" strokeOpacity="0.5" />
-                  </svg>
-                </div>
-                <div className="absolute bottom-0 right-0 w-8 h-8 pointer-events-none">
-                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                    <path d="M8 30H30V8" stroke="#2201DC" strokeWidth="1.5" strokeOpacity="0.25" />
-                  </svg>
-                </div>
+                
 
                 {/* Counter */}
                 <span className="absolute top-4 right-4 text-white/20 text-xs font-mono">
