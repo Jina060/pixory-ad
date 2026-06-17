@@ -1,9 +1,15 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
+
+interface Company {
+  name: string;
+  logo: string;
+}
 
 interface InfiniteScrollRibbonProps {
-  companies: string[];
+  companies: Company[];
   fontSize: number;
   gap: number;
   animationClass: string;
@@ -23,6 +29,7 @@ const InfiniteScrollRibbon = ({ companies, fontSize, gap, animationClass }: Infi
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
+                gap: '10px',
                 padding: '14px 32px',
                 borderRadius: '999px',
                 background: 'rgba(255, 255, 255, 0.10)',
@@ -33,6 +40,16 @@ const InfiniteScrollRibbon = ({ companies, fontSize, gap, animationClass }: Infi
                 flexShrink: 0,
               }}
             >
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', flexShrink: 0, background: 'rgba(255, 255, 255, 0.87)', borderRadius: '4px' }}>
+                <Image
+                  src={company.logo}
+                  alt={company.name}
+                  width={24}
+                  height={24}
+                  unoptimized
+                  style={{ objectFit: 'scale-down' }}
+                />
+              </div>
               <span
                 style={{
                   fontSize: `${fontSize}px`,
@@ -42,7 +59,7 @@ const InfiniteScrollRibbon = ({ companies, fontSize, gap, animationClass }: Infi
                   lineHeight: '1',
                 }}
               >
-                {company}
+                {company.name}
               </span>
             </div>
           ))}
@@ -53,14 +70,23 @@ const InfiniteScrollRibbon = ({ companies, fontSize, gap, animationClass }: Infi
 };
 
 export default function CompanyRibbons() {
-  const firstRibbonCompanies = [
-    'Digital Studio', 'Emmanuel Works', 'Paylinx',
-    'RapidLogix', 'Digital Studio', 'Emmanuel Works',
+  const firstRibbonCompanies: Company[] = [
+    { name: 'Taxcodes LLC', logo: 'Logos/Taxcodes-logo.png' },
+    { name: 'Kapporeth Charity', logo: 'Logos/Kc.webp' },
+    { name: 'TAANMU', logo: 'Logos/tamnu.png' },
+    { name: 'Veroem Solution', logo: 'Logos/veroem.png' },
+    { name: 'Emmanuel Works', logo: 'Logos/em.png' },
   ];
 
-  const secondRibbonCompanies = [
-    'TAANMU', 'JKP', 'Veroem Solution', 'Emmanuel Works',
-    'DHF', 'RapidLogix', 'Paylinx', 'TAANMU', 'JKP',
+  const secondRibbonCompanies: Company[] = [
+    { name: 'TAANMU', logo: 'Logos/tamnu.png' },
+    { name: 'JKP', logo: 'Logos/logo.webp' },
+    { name: 'Emmanuel Works', logo: 'Logos/logo.webp' },
+    { name: 'DHF', logo: 'Logos/logo.webp' },
+    { name: 'RapidLogix', logo: 'Logos/logo.webp' },
+    { name: 'Paylinx', logo: 'Logos/logo.webp' },
+    { name: 'TAANMU', logo: 'Logos/logo.webp' },
+    { name: 'JKP', logo: '/images/Logos/logo.webp' },
   ];
 
   return (
@@ -90,7 +116,7 @@ export default function CompanyRibbons() {
         </div>
 
         {/* Second Ribbon — dark, scrolls reverse */}
-        <div
+        {/* <div
           className="w-full overflow-hidden flex items-center"
           style={{ height: '100px' }}
         >
@@ -100,7 +126,7 @@ export default function CompanyRibbons() {
             gap={20}
             animationClass="slide-animation-reverse"
           />
-        </div>
+        </div> */}
 
       </div>
     </>

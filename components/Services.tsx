@@ -60,7 +60,7 @@ const ServiceCard = ({
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
       whileHover={{ y: -5, transition: { duration: 0.2 } }}
-      className="relative group rounded-2xl overflow-hidden aspect-square"
+      className="relative group rounded-2xl overflow-hidden aspect-square mb-4"
     >
       {/* Image */}
       <Image
@@ -85,19 +85,6 @@ const ServiceCard = ({
       />
 
       
-
-      {/* Corner accent bottom-right */}
-      <div className="absolute bottom-0 right-0 w-8 h-8 pointer-events-none z-10">
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-          <path
-            d="M8 30H30V8"
-            stroke="#2201DC"
-            strokeWidth="1.5"
-            strokeOpacity="0.3"
-          />
-        </svg>
-      </div>
-
       {/* Bottom label bar — dark overlay with service name */}
       {/* Bottom label bar — floating rectangle not touching edges */}
       <div className="absolute bottom-4 left-4 right-4 z-10">
@@ -190,7 +177,7 @@ export default function Services() {
   const isInView = useInView(headerRef, { once: true, margin: "-80px" });
 
   return (
-    <section className="relative bg-[#000000] py-20 md:py-25 overflow-hidden">
+    <section className="relative bg-[#000000] py-20 md:py-10">
       <NodeGrid />
 
       {/* Ambient glow */}
@@ -247,12 +234,30 @@ export default function Services() {
         </div>
         </div>
 
-        {/* Services grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {services.map((service, i) => (
-            <ServiceCard key={i} service={service} index={i} />
-          ))}
-        </div>
+{/* Services grid */}
+
+{/* Desktop */}
+<div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+  {services.map((service, i) => (
+    <ServiceCard key={i} service={service} index={i} />
+  ))}
+</div>
+
+{/* Mobile Sticky Stack */}
+<div className="md:hidden">
+  {services.map((service, i) => (
+    <div
+      key={i}
+      style={{
+        position: 'sticky',
+        top: '0px',
+        zIndex: i + 1,
+      }}
+    >
+      <ServiceCard service={service} index={i} />
+    </div>
+  ))}
+</div>
       </div>
     </section>
   );

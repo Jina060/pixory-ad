@@ -172,7 +172,7 @@ export default function Portfolio() {
   const isInView = useInView(headerRef, { once: true, margin: "-80px" });
 
   return (
-    <section className="relative bg-[#000000] py-20 md:py-25 overflow-hidden">
+    <section className="relative bg-[#000000] py-20 md:py-15 overflow-hidden">
 
       {/* Ambient glow */}
       <div

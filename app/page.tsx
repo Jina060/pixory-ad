@@ -4,8 +4,10 @@ import BackgroundGradients from "@/components/BackgroundGradients";
 import Reviews from "@/components/Reviews";
 import Services from "@/components/Services";
 import Portfolio from "@/components/Portfolio";
-import WhyBrandsChoosePixory from "@/components/WhyBrandsChoosePixory";
 import Statistics from "@/components/Statistics";
+import PricingSection from "@/components/Pricing";
+import ComparisonTable from "@/components/ComparisonTable";
+import FAQ from "@/components/FAQ";
 
 export default function Home() {
   return (
@@ -29,8 +31,10 @@ export default function Home() {
         <Reviews />
         <Services />
         <Portfolio />
-        <WhyBrandsChoosePixory />
+        <PricingSection />
+        <ComparisonTable />
         <Statistics />
+        <FAQ />
       </div>
       
     </main>
