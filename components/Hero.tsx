@@ -61,13 +61,13 @@ if (!mounted) {
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-[90px] font-bold md:font-normal text-white mb-1 leading-tight md:leading-tight">
             <span className="block">
-              <StaticText text="Web Design Agency" />
+              <StaticText text="We Build Digital" />
             </span>
 
             <span className="block mt-1 md:mt-0">
               <span className="relative inline-block">
                 <span className="inline-block">
-                  <StaticText text="For " />
+                  <StaticText text="That " />
                 </span>
 
                 <m.svg
@@ -110,16 +110,16 @@ if (!mounted) {
                 </m.svg>
               </span>
 
-              <StaticText text=" African Startups" />
+              <StaticText text=" Turn Visitors" />
             </span>
 
             <span className="block mt-1 md:mt-0">
-              <StaticText text="& Diaspora Brands." />
+              <StaticText text="into Customers" />
             </span>
           </h1>
 
           <p className="text-base md:text-lg text-white/80 max-w-lg mx-auto mb-12 leading-relaxed font-extralight">
-            Pixory Flow is a web design and development agency that has helped brands generate over 600 million CFA through high-performing digital solutions.
+            Pixory Flow is a web design and development agency that has helped brands generate over $1.76 million through high-performing digital solutions.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
@@ -133,11 +133,11 @@ if (!mounted) {
             </Link>
 
             <Link
-              href="/work"
+              href="https://calendly.com/pixoryflow-info/30min"
               className="hover:scale-105 transition-all duration-300 cursor-pointer"
             >
               <button className="bg-white hover:bg-gray-50 text-gray-900 font-semibold px-10 rounded-full transition-all duration-300 uppercase tracking-wider text-sm border border-white cursor-pointer h-14 w-56 leading-none flex items-center justify-center">
-                VIEW OUR WORK
+                BOOK A CALL
               </button>
             </Link>
           </div>
