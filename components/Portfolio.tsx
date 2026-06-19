@@ -8,67 +8,67 @@ const projects = [
   {
     name: "Codelin",
     description: "Describe what you want to build - Codelin generates production-ready code, UI, logic in seconds.",
-    image: "Codelin.png",
+    image: "Codelin.webp",
   },
   {
     name: "Flowpay",
     description: "FlowPay helps you track spending, automate savings, and grow healthier financial habits all in one simple app.",
-    image: "Flowpay.png",
+    image: "Flowpay.webp",
   },
   {
     name: "Lumi Solar",
     description: "Harnessing renewable power through advanced solar, wind, and next-generation energy systems.",
-    image: "Lumi.png",
+    image: "Lumi.webp",
   },
   {
     name: "Motionx",
     description: "Personalized training plans, certified coaches, and real results you can see and feel.",
-    image: "Motionx.png",
+    image: "Motionx.webp",
   },
   {
     name: "Mullian3",
     description: "Step into the next generation of the internet powered by secure, transparent, and decentralized technologies.",
-    image: "Mullian3.png",
+    image: "Mullian3.webp",
   },
   {
     name: "Delux Spa",
     description: "Revitalize your skin with premium skincare treatments that enhance your natural beauty.",
-    image: "DeluxSpa.png",
+    image: "DeluxSpa.webp",
   },
   {
     name: "Grower Ai",
     description: "Simple AI tool designed to help you scale your business ",
-    image: "GrowerAi.png",
+    image: "GrowerAi.webp",
   },
   {
     name: "kimi.Ai",
     description: "The All-in-one intelligence platform for data- driven organization",
-    image: "kimiai.png",
+    image: "kimiai.webp",
   },
   {
     name: "Marinex",
     description: "Connecting continents with precision logistics and operational excellence.",
-    image: "Marinex.png",
+    image: "Marinex.webp",
   },
   {
     name: "Monify",
     description: "Manage payments, Manage your money securely with fast transfers, savings plans, and 24/7 digital banking services.",
-    image: "Monify.png",
+    image: "Monify.webp",
   },
   {
     name: "Nexaron",
     description: "Build in Web3 with ease using our platform’s multi-chain connectivity and AI-driven smart contracts.",
-    image: "Nexaron.png",
+    image: "Nexaron.webp",
   },
   {
     name: "Roofy",
     description: "Professional roofing services for homes and businesses installation, repairs, and maintenance you can rely on.",
-    image: "Roofy.png",
+    image: "Roofy.webp",
   },
   {
     name: "Sivour Kle",
     description: "Experience skincare and cosmetics crafted to enhance your natural radiance with luxury ingredients and flawless results.",
-    image: "SivourKle.png",
+    image: "SivourKle.webp",
   },
 ];
 

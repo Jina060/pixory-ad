@@ -39,7 +39,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center gap-2">
-          <Image
+          <Image loading="eager"
             src="/logo-dark.png"
             alt="Pixory"
             width={100}

@@ -67,7 +67,7 @@ if (!mounted) {
             <span className="block mt-1 md:mt-0">
               <span className="relative inline-block">
                 <span className="inline-block">
-                  <StaticText text="That " />
+                  <StaticText text="Products " />
                 </span>
 
                 <m.svg
@@ -110,11 +110,11 @@ if (!mounted) {
                 </m.svg>
               </span>
 
-              <StaticText text=" Turn Visitors" />
+              <StaticText text=" That Turn" />
             </span>
 
             <span className="block mt-1 md:mt-0">
-              <StaticText text="into Customers" />
+              <StaticText text="Visitors Into Customers" />
             </span>
           </h1>
 
