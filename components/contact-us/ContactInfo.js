@@ -5,9 +5,9 @@ import SocialMediaIcons from './SocialMediaIcons';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
-const ContactInfo = ({ 
+const ContactInfo = ({
   title = "Contact Information",
-  description = "Whether you're ready to launch a product, redesign your platform, or scale your idea our team is here to make it happen.",
+  description = "Whether you’re ready to launch a website, redesign your platform, or scale your digital product, our team is here to make it happen.",
   phone = "4578886534678",
   email = "info@pixoryflow.agency",
   location = "Online service",
@@ -18,7 +18,7 @@ const ContactInfo = ({
       initial={{ opacity: 0, x: -30 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.7, delay: 0.1 }}
-      className="flex-1 rounded-3xl p-4 lg:p-6 flex flex-col gap-8 relative overflow-hidden"
+      className="flex-1 rounded-3xl p-4 lg:p-6 flex flex-col gap-8 relative overflow-hidden" loading="eager"
     >
       <Image
         src={backgroundImage}
@@ -31,7 +31,7 @@ const ContactInfo = ({
       <div className="relative z-10">
       {/* Header */}
       <div className="flex flex-col gap-4">
-        <h3 className="text-white font-semibold text-[36px] md:text-[40px] leading-[1.3] md:leading-15">
+        <h3 className="text-white font-semibold text-[36px] md:text-[40px] leading-[1.3] md:leading-[60px]">
           {title}
         </h3>
         <p className="text-white text-base leading-6">
@@ -62,7 +62,7 @@ const ContactInfo = ({
               Cameroon Office
             </span>
             <span className="text-white text-base" style={{ fontFamily: 'Poppins, sans-serif' }}>
-              +237 652 370 789
+              +237 653 818 918
             </span>
           </div>
         </div>
@@ -92,3 +92,4 @@ const ContactInfo = ({
 };
 
 export default ContactInfo;
+

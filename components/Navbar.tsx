@@ -38,6 +38,7 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo */}
+        <Link href="/" className="cursor-pointer z-50">
         <div className="flex items-center gap-2">
           <Image loading="eager"
             src="/logo-dark.png"
@@ -47,6 +48,7 @@ export default function Navbar() {
             className="object-contain"
           />
         </div>
+        </Link>
 
         {/* Desktop Contact Button */}
         <Link href="/contact-us" className="hidden lg:block">
