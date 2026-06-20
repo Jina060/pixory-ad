@@ -1,14 +1,15 @@
 'use client';
 import React, { useState, FormEvent, ChangeEvent } from 'react';
-import { ChevronDown } from 'lucide-react';
+import { Paperclip } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 interface FormData {
   fullName: string;
   email: string;
-  company: string;
-  projectType: string;
+  service: string;
+  budget: string;
   message: string;
+  files: File[];
 }
 
 interface SubmitStatus {
@@ -24,39 +25,40 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
   const [formData, setFormData] = useState<FormData>({
     fullName: '',
     email: '',
-    company: '',
-    projectType: 'Brand Guideline services',
-    message: ''
+    service: '',
+    budget: '',
+    message: '',
+    files: []
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<SubmitStatus>({ type: null, message: '' });
-  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
+  const [isServiceDropdownOpen, setIsServiceDropdownOpen] = useState(false);
+  const fileInputRef = React.useRef<HTMLInputElement>(null);
+  const serviceDropdownRef = React.useRef<HTMLDivElement>(null);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
-    // Check if reCAPTCHA is completed
-    if (!recaptchaToken) {
-      setSubmitStatus({
-        type: 'error',
-        message: 'Please complete the reCAPTCHA verification.'
-      });
-      return;
-    }
     
     setIsSubmitting(true);
     setSubmitStatus({ type: null, message: '' });
 
     try {
+      const formDataToSend = new FormData();
+      formDataToSend.append('fullName', formData.fullName);
+      formDataToSend.append('email', formData.email);
+      formDataToSend.append('service', formData.service);
+      formDataToSend.append('budget', formData.budget);
+      formDataToSend.append('message', formData.message);
+      
+      // Append files
+      formData.files.forEach((file) => {
+        formDataToSend.append('files', file);
+      });
+
       const response = await fetch('/api/contact', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...formData,
-          recaptchaToken
-        }),
+        body: formDataToSend,
       });
 
       const data = await response.json();
@@ -70,11 +72,14 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
         setFormData({
           fullName: '',
           email: '',
-          company: '',
-          projectType: 'Brand Guideline services',
-          message: ''
+          service: '',
+          budget: '',
+          message: '',
+          files: []
         });
-        setRecaptchaToken(null);
+        if (fileInputRef.current) {
+          fileInputRef.current.value = '';
+        }
         // Call original onSubmit if provided
         if (onSubmit) {
           onSubmit(formData);
@@ -103,100 +108,212 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
     });
   };
 
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (files) {
+      setFormData({
+        ...formData,
+        files: Array.from(files)
+      });
+    }
+  };
+
+  const handleBudgetSelect = (budget: string) => {
+    setFormData({
+      ...formData,
+      budget
+    });
+  };
+
+  const handleServiceSelect = (service: string) => {
+    setFormData({
+      ...formData,
+      service
+    });
+    setIsServiceDropdownOpen(false);
+  };
+
+  React.useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (serviceDropdownRef.current && !serviceDropdownRef.current.contains(event.target as Node)) {
+        setIsServiceDropdownOpen(false);
+      }
+    };
+
+    if (isServiceDropdownOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isServiceDropdownOpen]);
+
   return (
     <motion.div 
       initial={{ opacity: 0, x: 30 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.7, delay: 0.2 }}
-      className="flex-1 bg-white rounded-3xl p-4 lg:p-6 shadow-sm border border-gray-200 flex flex-col justify-center gap-10 overflow-visible"
+      className="w-full max-w-2xl bg-white rounded-3xl p-8 lg:p-12 shadow-sm border border-gray-200"
     >
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        {/* Row 1: Full Name & Email */}
-        <div className="flex flex-col lg:flex-row gap-4">
-          {/* Full Name */}
-          <div className="flex flex-col gap-1.5 flex-1">
-            <label className="text-[#1E293B] font-medium text-sm leading-5.5">
-              Full name:
-            </label>
-            <input
-              type="text"
-              name="fullName"
-              value={formData.fullName}
-              onChange={handleChange}
-              placeholder="Enter your full name"
-              className="bg-[#F7F7F7] rounded-[10px] px-4 py-3 text-sm leading-5.5 text-[#1E293B] placeholder:text-[#94A3B8] focus:outline-none focus:ring-2 focus:ring-[#2201DC]"
-            />
-          </div>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+        {/* Heading */}
+        <div>
+          <h2 className="text-3xl lg:text-4xl font-bold text-[#1E293B] mb-4">
+            Tell us about your project
+          </h2>
+        </div>
 
-          {/* Email */}
-          <div className="flex flex-col gap-1.5 flex-1">
-            <label className="text-[#1E293B] font-medium text-sm leading-5.5">
-              E-mail:
-            </label>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="Enter your email"
-              className="bg-[#F7F7F7] rounded-[10px] px-4 py-3 text-sm leading-5.5 text-[#1E293B] placeholder:text-[#94A3B8] focus:outline-none focus:ring-2 focus:ring-[#2201DC]"
-            />
+        {/* Full Name */}
+        <div className="flex flex-col gap-2">
+          <label className="text-lg font-medium text-[#1E293B]">
+            Full name <span className="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            name="fullName"
+            value={formData.fullName}
+            onChange={handleChange}
+            placeholder=""
+            required
+            className="bg-transparent border-b-2 border-gray-300 px-0 py-3 text-base text-[#1E293B] placeholder:text-[#94A3B8] focus:outline-none focus:border-[#2201DC] transition-colors"
+          />
+        </div>
+
+        {/* Corporate Email */}
+        <div className="flex flex-col gap-2">
+          <label className="text-lg font-medium text-[#1E293B]">
+            Corporate email <span className="text-red-500">*</span>
+          </label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder=""
+            required
+            className="bg-transparent border-b-2 border-gray-300 px-0 py-3 text-base text-[#1E293B] placeholder:text-[#94A3B8] focus:outline-none focus:border-[#2201DC] transition-colors"
+          />
+        </div>
+
+        {/* Service Selection */}
+        <div className="flex flex-col gap-2">
+          <label className="text-lg font-medium text-[#1E293B]">
+            What is your inquiry about? <span className="text-red-500">*</span>
+          </label>
+          <div ref={serviceDropdownRef} className="relative">
+            <button
+              type="button"
+              onClick={() => setIsServiceDropdownOpen(!isServiceDropdownOpen)}
+              className="w-full text-left bg-transparent border-b-2 border-gray-300 px-0 py-3 text-base text-[#1E293B] focus:outline-none focus:border-[#2201DC] transition-colors flex justify-between items-center"
+            >
+              <span className={formData.service ? '' : 'text-gray-400'}>
+                {formData.service || 'Select a service'}
+              </span>
+              <svg className={`w-5 h-5 text-gray-400 transition-transform ${isServiceDropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            {isServiceDropdownOpen && (
+              <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg z-50 max-h-60 overflow-y-auto">
+                {[
+                  { label: 'General Inquiry', value: 'General Inquiry' },
+                  { label: 'UI/UX & Product Design', value: 'UI/UX & Product Design' },
+                  { label: 'Frontend Development', value: 'Frontend Development' },
+                  { label: 'Backend Development', value: 'Backend Development' },
+                  { label: 'No-Code & Low-Code', value: 'No-Code & Low-Code' },
+                  { label: 'Graphics Design & Branding', value: 'Graphics Design & Branding' },
+                  { label: 'End-To-End Growth', value: 'End-To-End Growth' },
+                  { label: 'Search Engine Optimization (SEO)', value: 'Search Engine Optimization (SEO)' },
+                ].map((option) => (
+                  <button
+                    key={option.value}
+                    type="button"
+                    onClick={() => handleServiceSelect(option.value)}
+                    className={`w-full text-left px-4 py-3 text-base hover:bg-gray-100 transition-colors ${
+                      formData.service === option.value ? 'bg-[#2201DC] text-white' : 'text-[#1E293B]'
+                    }`}
+                  >
+                    {option.label}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
         </div>
 
-        {/* Row 2: Company & Project Type */}
-        <div className="flex flex-col lg:flex-row gap-4">
-          {/* Company */}
-          <div className="flex flex-col gap-1.5 flex-1">
-            <label className="text-[#1E293B] font-medium text-sm leading-5.5">
-              Company/Brand name:
-            </label>
-            <input
-              type="text"
-              name="company"
-              value={formData.company}
-              onChange={handleChange}
-              placeholder="Enter your company/brand name"
-              className="bg-[#F7F7F7] rounded-[10px] px-4 py-3 text-sm leading-5.5 text-[#1E293B] placeholder:text-[#94A3B8] focus:outline-none focus:ring-2 focus:ring-[#2201DC]"
-            />
-          </div>
-
-          {/* Project Type */}
-          <div className="flex flex-col gap-1.5 flex-1">
-            <label className="text-[#1E293B] font-medium text-sm leading-5.5">
-              Project Type:
-            </label>
-            <div className="relative">
-              <select
-                name="projectType"
-                value={formData.projectType}
-                onChange={handleChange}
-                className="w-full bg-[#F7F7F7] rounded-[10px] px-4 py-3 text-sm leading-5.5 text-[#1E293B] appearance-none focus:outline-none focus:ring-2 focus:ring-[#2201DC]"
+        {/* Budget Selection */}
+        <div className="flex flex-col gap-2">
+          <label className="text-lg font-medium text-[#1E293B]">
+            What is your budget? <span className="text-red-500">*</span>
+          </label>
+          <div className="flex flex-wrap gap-3">
+            {[
+              { label: 'Up to $500', value: 'up-to-500' },
+              { label: '$500-$1K', value: '500-1k' },
+              { label: '$1K-$5K', value: '1k-5k' },
+              { label: '$5K-$10K', value: '5k-10k' },
+            ].map((option) => (
+              <button
+                key={option.value}
+                type="button"
+                onClick={() => handleBudgetSelect(option.value)}
+                className={`px-6 py-3 rounded-full font-medium transition-all ${
+                  formData.budget === option.value
+                    ? 'bg-[#2201DC] text-white'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
               >
-                <option>Brand Guideline services</option>
-                <option>Web Development</option>
-                <option>Mobile App Development</option>
-                <option>UI/UX Design</option>
-                <option>Digital Marketing</option>
-              </select>
-              <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-6 h-6 pointer-events-none" />
-            </div>
+                {option.label}
+              </button>
+            ))}
           </div>
         </div>
 
-        {/* Message */}
-        <div className="flex flex-col gap-1.5">
-          <label className="text-[#1E293B] font-medium text-sm leading-5.5">
-            Message:
+        {/* About Project */}
+        <div className="flex flex-col gap-2">
+          <label className="text-lg font-medium text-[#1E293B]">
+            About project <span className="text-red-500">*</span>
           </label>
           <textarea
             name="message"
             value={formData.message}
             onChange={handleChange}
-            placeholder="Enter your Message"
-            rows={6}
-            className="bg-[#F7F7F7] rounded-[10px] px-4 py-3 text-sm leading-5.5 text-[#1E293B] placeholder:text-[#94A3B8] resize-none focus:outline-none focus:ring-2 focus:ring-[#2201DC]"
+            placeholder=""
+            required
+            rows={1}
+            className="bg-transparent border-b-2 border-gray-300 px-0 py-3 text-base text-[#1E293B] placeholder:text-[#94A3B8] resize-vertical focus:outline-none focus:border-[#2201DC] transition-colors overflow-hidden"
           />
+        </div>
+
+        {/* File Upload */}
+        <div className="flex items-center gap-4">
+          <button
+            type="button"
+            onClick={() => fileInputRef.current?.click()}
+            className="w-14 h-14 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors"
+            aria-label="Attach files"
+          >
+            <Paperclip className="w-6 h-6 text-gray-600" />
+          </button>
+          <span className="text-gray-600 font-medium">*.doc *.pdf</span>
+          <input
+            ref={fileInputRef}
+            type="file"
+            multiple
+            accept=".doc,.docx,.pdf"
+            onChange={handleFileChange}
+            className="hidden"
+          />
+          {formData.files.length > 0 && (
+            <div className="ml-4 flex flex-wrap gap-2">
+              {formData.files.map((file, idx) => (
+                <span key={idx} className="text-sm bg-gray-100 px-3 py-1 rounded-full text-gray-700">
+                  {file.name}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Status Message */}
@@ -212,14 +329,22 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
           </div>
         )}
 
-      
+       
+        {/* Policy Notice */}
+        <div className="text-center text-sm text-gray-600">
+          By submitting this form you agree to our{' '}
+          <a href="/privacy-policy" className="font-semibold text-[#1E293B] hover:underline">
+            Privacy Policy
+          </a>
+        </div>
+
         {/* Submit Button */}
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full bg-[#2201DC] text-white font-semibold text-base leading-6 uppercase py-4 rounded-full hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full bg-[#2201DC] text-white font-bold text-lg py-4 rounded-full hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
         >
-          {isSubmitting ? 'Sending...' : 'Send Request'}
+          {isSubmitting ? 'Sending...' : 'Submit'}
         </button>
       </form>
     </motion.div>
@@ -227,3 +352,4 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
 };
 
 export default ContactForm;
+
