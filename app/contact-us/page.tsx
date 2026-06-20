@@ -4,18 +4,8 @@ import ContactHeading from '@/components/contact-us/ContactHeading';
 import ContactForm from '@/components/contact-us/ContactForm';
 import ContactInfo from '@/components/contact-us/ContactInfo';
 
-interface FormData {
-  fullName: string;
-  email: string;
-  company: string;
-  projectType: string;
-  message: string;
-}
-
 const ContactFormSection = () => {
-  const handleSubmit = (formData: FormData) => {
-    console.log('Form submitted:', formData);
-  };
+  
 
   return (
     <section className="w-full bg-black py-8 md:py-20 pt-32 px-3 md:px-6">
@@ -29,7 +19,7 @@ const ContactFormSection = () => {
           <ContactInfo />
 
           {/* Right Side - Form */}
-          <ContactForm onSubmit={handleSubmit} />
+          <ContactForm />
         </div>
       </div>
     </section>

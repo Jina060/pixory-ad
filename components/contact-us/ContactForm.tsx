@@ -17,11 +17,7 @@ interface SubmitStatus {
   message: string;
 }
 
-interface ContactFormProps {
-  onSubmit?: (data: FormData) => void;
-}
-
-const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
+const ContactForm: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
     fullName: '',
     email: '',
@@ -81,9 +77,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
           fileInputRef.current.value = '';
         }
         // Call original onSubmit if provided
-        if (onSubmit) {
-          onSubmit(formData);
-        }
+       
       } else {
         setSubmitStatus({
           type: 'error',
