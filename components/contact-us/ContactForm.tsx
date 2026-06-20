@@ -2,7 +2,6 @@
 import React, { useState, FormEvent, ChangeEvent } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { motion } from 'framer-motion';
-import ReCAPTCHA from 'react-google-recaptcha';
 
 interface FormData {
   fullName: string;
@@ -213,15 +212,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
           </div>
         )}
 
-        {/* reCAPTCHA */}
-        <div className="flex justify-center">
-          <ReCAPTCHA
-            sitekey="6LfDTcwsAAAAAFYe5Bdm5Gy2oaGAj1lnI1BW6tch"
-            onChange={(token: string | null) => setRecaptchaToken(token)}
-            onExpired={() => setRecaptchaToken(null)}
-          />
-        </div>
-
+      
         {/* Submit Button */}
         <button
           type="submit"
