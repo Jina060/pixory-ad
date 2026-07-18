@@ -51,9 +51,9 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Contact Button */}
-        <Link href="/contact-us" className="hidden lg:block">
+        <Link href="/booking" className="hidden lg:block">
           <button className="bg-[#FE5A7A] hover:bg-[#fe4a6a] text-white font-sans text-sm font-medium px-8 py-3 rounded-full transition-colors uppercase tracking-wide cursor-pointer">
-            START A PROJECT
+            BOOK A SPOT
           </button>
         </Link>
 

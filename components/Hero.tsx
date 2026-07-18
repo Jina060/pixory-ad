@@ -11,7 +11,7 @@ import { useState, useEffect } from 'react';
 import DecorativeCircle1 from './DecorativeCircle1';
 import Crown from './Crown';
 import {Activity} from 'react'
-import Form from '@/modal/Form';
+import Form from '@/components/Form';
 
 // Component to display text without animation
 const StaticText = ({ text }: { text: string }) => {
