@@ -35,6 +35,7 @@ useEffect(() => {
   return () => window.removeEventListener("resize", handleResize);
 }, []);
 
+
 if (!mounted) {
   return null;
 }
@@ -147,7 +148,7 @@ if (!mounted) {
         </div>
 
         <Activity mode={isOpen === true ? 'visible' : 'hidden'}>
-          <Form setIsOpen={setIsOpen} />
+          <Form setIsOpen={setIsOpen} isOpen={isOpen} />
         </Activity>
       </section>
     </LazyMotion>
