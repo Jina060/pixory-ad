@@ -10,8 +10,6 @@ import { LazyMotion, domAnimation, m } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import DecorativeCircle1 from './DecorativeCircle1';
 import Crown from './Crown';
-import {Activity} from 'react'
-import Form from '@/components/Form';
 
 // Component to display text without animation
 const StaticText = ({ text }: { text: string }) => {
@@ -21,7 +19,6 @@ const StaticText = ({ text }: { text: string }) => {
 export default function Hero() {
  const [isMobile, setIsMobile] = useState(false);
 const [mounted, setMounted] = useState(false);
-const [isOpen, setIsOpen] = useState(false)
 
 useEffect(() => {
   setMounted(true);
@@ -146,10 +143,6 @@ if (!mounted) {
             </Link>
           </div>
         </div>
-
-        <Activity mode={isOpen === true ? 'visible' : 'hidden'}>
-          <Form setIsOpen={setIsOpen} isOpen={isOpen} />
-        </Activity>
       </section>
     </LazyMotion>
   );
