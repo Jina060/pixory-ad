@@ -2,7 +2,7 @@
 import RadioItem from '@/components/RadioItem'
 import { motion } from 'framer-motion'
 import { FileText, Globe, Target, User, X } from 'lucide-react'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 
 interface HeaderProps {
@@ -19,6 +19,10 @@ interface InputProp {
   type: string
   subtext?: string
 }
+interface Props {
+  isOpen: boolean,
+  setIsOpen:React.Dispatch<React.SetStateAction<boolean>>
+}
 
 function Header({icon, title}: HeaderProps) {
   return (
@@ -26,7 +30,7 @@ function Header({icon, title}: HeaderProps) {
       <div className='bg-[#FE5A7A]/40 p-2 rounded-md border border-[#FE5A7A]'>
         {icon}
       </div>
-      <p className='font-sans font-semibold'>{title}</p>
+      <p className='font-sans font-semibold text-sm md:text-lg'>{title}</p>
     </header>
   )
 }
@@ -39,7 +43,7 @@ function InputItem({title, type, subtext} : InputProp) {
     </fieldset>
   )
 }
-const Form = ({setIsOpen}: {setIsOpen: React.Dispatch<React.SetStateAction<boolean>>}) => {
+const Form = ({setIsOpen, isOpen}: Props) => {
   const [answer, setAnswer] = useState<string>('')
 
   const [formData, setFormData] = useState<FormProp>({
@@ -64,22 +68,35 @@ const Form = ({setIsOpen}: {setIsOpen: React.Dispatch<React.SetStateAction<boole
     }
   }
 
+  useEffect(() => {
+    if(isOpen) {
+      document.body.style.overflow='hidden'
+    } else {
+      document.body.style.overflow='auto'
+    }
+
+    return () => {
+      document.body.style.overflow='auto'
+    }
+  }, [isOpen])
+
+
 
   return (
     <div className='fixed top-0 left-0 w-full h-full bg-black/50 flex items-center justify-center z-50'>
       <div 
         className='modal-scroll bg-slate-900 text-white  p-4 rounded-xl shadow-lg w-full max-w-lg h-full max-h-[600px] overflow-y-auto'
       >
-        <header className='flex items-center gap-3 mb-7 relative'>
+        <header className='flex items-center gap-3 mb-7 relative pt-10 md:p-0'>
           <div className='bg-[#FE5A7A]/40 p-3 rounded-full border border-[#FE5A7A]'>
             <FileText color='#FE5A7A' size={20}/>
           </div>
           <div className='space-y-0.5'>
-            <h1 className='font-semibold font-mono tracking-normal text-lg'>Help us understand your needs</h1>
-            <p className="text-xs font-bold md:font-normal font-sans text-[#ccc] tracking-wide">Provide accurate information in the fields below</p>
+            <h1 className='font-semibold font-mono tracking-normal text-sm md:text-lg'>Help us understand your needs</h1>
+            <p className="md:text-xs text-[11px] font-bold md:font-normal font-sans text-[#ccc] tracking-wide">Provide accurate information in the fields below</p>
           </div>
 
-          <button className='absolute right-0 bg-slate-950 p-1.5 rounded-full cursor-pointer' onClick={() => setIsOpen(false)}>
+          <button className='absolute right-0 -top-1 md:top-1 bg-slate-950 p-1.5 rounded-full cursor-pointer' onClick={() => setIsOpen(false)}>
             <X/>
           </button>
         </header>
