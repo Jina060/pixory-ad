@@ -21,60 +21,39 @@ export default function Crown() {
         <div className="flex items-center -space-x-2 relative">
           
           {/* Individual pulse rings for each avatar - reduce animation on mobile */}
-          <div className="absolute w-10 h-10 rounded-full border border-blue-400/20 animate-ping -z-10 hidden sm:block" 
-               style={{ animationDelay: '0s' }} />
+         
           
-          <div className="absolute w-10 h-10 rounded-full border border-blue-400/20 animate-ping -z-10 hidden sm:block" 
-               style={{ animationDelay: '0.2s', left: '16px' }} />
+          <div className="absolute w-7 h-7 rounded-full border border-[#FE5A7A] animate-ping -z-10 hidden sm:block" 
+               style={{ animationDelay: '0.2s', left: '-5px' }} />
           
-          <div className="absolute w-10 h-10 rounded-full border border-blue-400/20 animate-ping -z-10 hidden sm:block" 
-               style={{ animationDelay: '0.4s', left: '32px' }} />
+      
 
           {/* Avatars with hover effects - reduce hover on mobile */}
-          <Image 
-            src="https://images.pexels.com/photos/10415856/pexels-photo-10415856.jpeg" 
-            alt="Client 1" 
-            className="lg:w-8 lg:h-8 rounded-full border-2 border-[#020617] hover:scale-110 transition-transform duration-300 relative z-10 hover:border-blue-400/50 object-cover
-                       sm:w-8 sm:h-8  /* Default size */
-                       w-7 h-7 /* Mobile size */" 
-            width={20}
-            height={20}
-          />
-          <Image 
-            src="https://images.pexels.com/photos/9706877/pexels-photo-9706877.jpeg" 
-            alt="Client 2" 
-            className="lg:w-8 lg:h-8 rounded-full border-2 border-[#020617] hover:scale-110 transition-transform duration-300 relative z-10 hover:border-purple-400/50 object-cover
+    
+          <div
+           
+            className="lg:w-5 lg:h-5 rounded-full bg-[#FE5A7A] border border-white hover:scale-110 transition-transform duration-300 relative z-10 hover:border-purple-400/50 object-cover
                        sm:w-8 sm:h-8
                        w-7 h-7" 
-            width={20}
-            height={20}
           />
-          <Image 
-            src="https://images.pexels.com/photos/17196246/pexels-photo-17196246.jpeg" 
-            alt="Client 3" 
-            className="lg:w-8 lg:h-8 rounded-full border-2 border-[#020617] hover:scale-110 transition-transform duration-300 relative z-10 hover:border-pink-400/50 object-cover
-                       sm:w-8 sm:h-8
-                       w-7 h-7" 
-            width={20}
-            height={20}
-          />
+        
         </div>
 
         {/* Text with subtle pulse on the number - responsive text */}
         <span className="text-white/90 font-medium lg:ml-1 lg:font-semibold group-hover:text-white transition-colors duration-300 relative
                          sm:text-sm sm:ml-1  /* Default */
                          text-xs ml-1 /* Mobile */">
-          Proudly Serving{" "}
+          7 of 20 {" "}
           <span className="relative inline-block">
             <span className="text-white font-bold animate-pulse" style={{ animationDuration: '3s' }}>
-              180+
+              Free
             </span>
             {/* Subtle glow behind the number - hide on mobile for performance */}
             <span className="absolute inset-0 text-white blur-sm opacity-0 group-hover:opacity-30 transition-opacity duration-300 hidden sm:inline-block">
-              180+
+              Free
             </span>
           </span>{" "}
-          Clients
+          Strategy Sessions Left This Month | Spots Resets August 1st
         </span>
       </div>
     </div>

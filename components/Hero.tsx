@@ -60,18 +60,18 @@ if (!mounted) {
           )}
         </div>
 
-        <div className="relative z-10 max-w-6xl mx-auto px-3 text-center">
+        <div className="relative z-10 mx-auto px-3 text-center">
           <Crown />
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-[90px] font-bold md:font-normal text-white mb-1 leading-tight md:leading-tight">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-[85px] font-bold md:font-normal text-white mb-1 leading-tight md:leading-tight">
             <span className="block">
-              <StaticText text="We Build Digital" />
+              <StaticText text="Get a Free Website" />
             </span>
 
             <span className="block mt-1 md:mt-0">
               <span className="relative inline-block">
                 <span className="inline-block">
-                  <StaticText text="Products " />
+                  <StaticText text="Strategy " />
                 </span>
 
                 <m.svg
@@ -114,16 +114,16 @@ if (!mounted) {
                 </m.svg>
               </span>
 
-              <StaticText text=" That Turn" />
+              <StaticText text=" Session ($250 Value)" />
             </span>
 
             <span className="block mt-1 md:mt-0">
-              <StaticText text="Visitors Into Customers" />
+              <StaticText text="Before Your Competitors Do" />
             </span>
           </h1>
 
           <p className="text-base md:text-lg text-white/80 max-w-lg mx-auto mb-12 leading-relaxed font-extralight">
-            Pixory Flow is a web design and development agency that has helped brands generate over $1.76 million through high-performing digital solutions.
+            Already have a site? We'll show you exactly why visitors leave without buying. Starting from scar
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
