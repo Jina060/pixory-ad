@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 export default function DecorativeCircles() {
   return (
     <motion.svg 
-      className="hidden md:block absolute top-[40%] left-[10%] pointer-events-none opacity-20 md:opacity-100 z-0 md:z-auto"
+      className="hidden md:block absolute top-[30%] left-[5%] pointer-events-none opacity-20 md:opacity-100 z-0 md:z-auto"
       width="51" 
       height="60" 
       viewBox="0 0 51 60" 

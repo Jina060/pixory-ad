@@ -1,41 +1,46 @@
 "use client";
 
-import DecorativeCurve from './DecorativeCurve';
-import DecorativeCircles from './DecorativeCircles';
-import DecorativeTriangle from './DecorativeTriangle';
-import DecorativeOval from './DecorativeOval';
-import CursorFollowDot from './CursorFollowDot';
-import Link from 'next/link';
-import { LazyMotion, domAnimation, m } from 'framer-motion';
-import { useState, useEffect } from 'react';
-import DecorativeCircle1 from './DecorativeCircle1';
-import Crown from './Crown';
+import DecorativeCurve from "./DecorativeCurve";
+import DecorativeCircles from "./DecorativeCircles";
+import DecorativeTriangle from "./DecorativeTriangle";
+import DecorativeOval from "./DecorativeOval";
+import CursorFollowDot from "./CursorFollowDot";
+import Link from "next/link";
+import { LazyMotion, domAnimation, m, motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import DecorativeCircle1 from "./DecorativeCircle1";
+import Crown from "./Crown";
 
 // Component to display text without animation
-const StaticText = ({ text }: { text: string }) => {
+const StaticText = ({
+  text,
+  className,
+}: {
+  text: string;
+  className?: string;
+}) => {
   return <span>{text}</span>;
 };
 
 export default function Hero() {
- const [isMobile, setIsMobile] = useState(false);
-const [mounted, setMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
-useEffect(() => {
-  setMounted(true);
+  useEffect(() => {
+    setMounted(true);
 
-  const handleResize = () => {
-    setIsMobile(window.innerWidth < 768);
-  };
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
 
-  handleResize(); // call it inside the handler instead
-  window.addEventListener("resize", handleResize);
-  return () => window.removeEventListener("resize", handleResize);
-}, []);
+    handleResize(); // call it inside the handler instead
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
-
-if (!mounted) {
-  return null;
-}
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <LazyMotion features={domAnimation}>
@@ -60,7 +65,7 @@ if (!mounted) {
         <div className="relative z-10 mx-auto px-3 text-center">
           <Crown />
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-[85px] font-bold md:font-normal text-white mb-1 leading-tight md:leading-tight">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-[78px] font-bold md:font-normal text-white mb-1 leading-tight md:leading-tight">
             <span className="block">
               <StaticText text="Get a Free Website" />
             </span>
@@ -68,7 +73,7 @@ if (!mounted) {
             <span className="block mt-1 md:mt-0">
               <span className="relative inline-block">
                 <span className="inline-block">
-                  <StaticText text="Strategy " />
+                  <StaticText text="Strategy Session" />
                 </span>
 
                 <m.svg
@@ -82,7 +87,7 @@ if (!mounted) {
                   animate={{
                     opacity: [0, 0.2, 1],
                     scale: 1,
-                    y: [0, -2, 0]
+                    y: [0, -2, 0],
                   }}
                   transition={{
                     opacity: { duration: 0.6, delay: 0.5 },
@@ -91,8 +96,8 @@ if (!mounted) {
                       duration: 2.5,
                       repeat: Infinity,
                       ease: "easeInOut",
-                      delay: 1.2
-                    }
+                      delay: 1.2,
+                    },
                   }}
                 >
                   <m.path
@@ -105,13 +110,15 @@ if (!mounted) {
                       duration: 3,
                       repeat: Infinity,
                       ease: "easeInOut",
-                      repeatDelay: 0.5
+                      repeatDelay: 0.5,
                     }}
                   />
                 </m.svg>
               </span>
 
-              <StaticText text=" Session ($250 Value)" />
+              <span className="text-[#FE5A7A]">
+                <StaticText text=" ($250 Value)" />
+              </span>
             </span>
 
             <span className="block mt-1 md:mt-0">
@@ -119,9 +126,51 @@ if (!mounted) {
             </span>
           </h1>
 
-          <p className="text-base md:text-lg text-white/80 max-w-lg mx-auto mb-12 leading-relaxed font-extralight">
-            Already have a site? We'll show you exactly why visitors leave without buying. Starting from scar
+          <p className="text-base md:text-lg text-white/80 max-w-3xl mx-auto mb-2 leading-relaxed font-light">
+            Already have a site? We&apos;ll show you exactly why visitors leave
+            without buying. Starting from scratch? We&apos;ll map out the
+            fastest path to a site that converts from day one.{" "}
           </p>
+          <p className="text-base md:text-lg text-white max-w-3xl mx-auto mb-10 leading-relaxed font-bold">
+            Either way - 20 free sessions this month, 48-hour turnaround, zero
+            obligation.
+          </p>
+
+          {/* Urgency bar */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.9 }}
+            className="flex flex-col items-center gap-2 mt-3 mb-4"
+          >
+            {/* Label row */}
+            <div className="flex items-center gap-2 text-xs text-white/50 tracking-wide">
+              <span>Spots claimed this month</span>
+              <span className="text-white/20">·</span>
+              <span className="text-white font-medium">13/20 CLAIMED</span>
+              <span className="text-white/20">·</span>
+              <span className="text-[#FE5A7A] font-medium">
+                7 SPOTS REMAINING
+              </span>
+            </div>
+
+            {/* Progress bar */}
+            <div className="w-64 sm:w-80 h-1.5 rounded-full bg-white/10 overflow-hidden">
+              <motion.div
+                className="h-full rounded-full"
+                style={{
+                  background: "linear-gradient(90deg, #2201DC, #FE5A7A)",
+                }}
+                initial={{ width: "0%" }}
+                animate={{ width: "65%" }}
+                transition={{
+                  duration: 1.2,
+                  delay: 1.2,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+              />
+            </div>
+          </motion.div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
             <Link
@@ -129,16 +178,7 @@ if (!mounted) {
               className="hover:scale-105 transition-all duration-300 cursor-pointer"
             >
               <button className="bg-[#2201DC] hover:bg-[#1d4ed8] text-white font-semibold px-10 rounded-full transition-all duration-300 uppercase tracking-wider text-sm border border-white cursor-pointer h-14 w-56 leading-none flex items-center justify-center">
-                START A PROJECT
-              </button>
-            </Link>
-
-            <Link
-              href="https://calendly.com/pixoryflow-info/30min"
-              className="hover:scale-105 transition-all duration-300 cursor-pointer"
-            >
-              <button className="bg-white hover:bg-gray-50 text-gray-900 font-semibold px-10 rounded-full transition-all duration-300 uppercase tracking-wider text-sm border border-white cursor-pointer h-14 w-56 leading-none flex items-center justify-center">
-                BOOK A CALL
+                BOOK YOUR SPOT
               </button>
             </Link>
           </div>

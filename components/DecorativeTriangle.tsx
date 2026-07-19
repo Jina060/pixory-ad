@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 export default function DecorativeTriangle() {
   return (
     <motion.svg
-      className="hidden md:block absolute top-[40%] right-[10%] pointer-events-none opacity-20 md:opacity-100 z-0 md:z-auto"
+      className="hidden md:block absolute top-[20%] right-[10%] pointer-events-none opacity-20 md:opacity-100 z-0 md:z-auto"
       width="105"
       height="121"
       viewBox="0 0 105 121"
