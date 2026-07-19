@@ -43,7 +43,7 @@ function InputItem({title, type, subtext} : InputProp) {
     </fieldset>
   )
 }
-const Form = ({setIsOpen, isOpen}: Props) => {
+const Form = () => {
   const [answer, setAnswer] = useState<string>('')
 
   const [formData, setFormData] = useState<FormProp>({
@@ -62,43 +62,29 @@ const Form = ({setIsOpen, isOpen}: Props) => {
   }
   const renderInput = () => {
     if (answer === 'yes_not_converting' || answer === "yes_performing") {
-      return <input type="text" placeholder="What's your website URL ?" className='border border-slate-700 outline-none shadow-xs shadow-white w-full rounded-md p-2 font-mono tracking-wider mt-3 text-xs' />
+      return <input type="text" placeholder="What's your website URL ?" className='border col-span-2 border-slate-700 outline-none shadow-xs shadow-white w-full rounded-md p-2 font-mono tracking-wider mt-2 text-xs' />
     } else if (answer === 'no'){
-      return <input type="text" placeholder="What's your business / industry ?" className='border border-slate-700 outline-none shadow-xs shadow-white w-full rounded-md p-2 font-mono tracking-wider mt-3 text-xs'/>
+      return <input type="text" placeholder="What's your business / industry ?" className='border col-span-2 border-slate-700 outline-none shadow-xs shadow-white w-full rounded-md p-2 font-mono tracking-wider mt-2 text-xs'/>
     }
   }
-
-  useEffect(() => {
-    if(isOpen) {
-      document.body.style.overflow='hidden'
-    } else {
-      document.body.style.overflow='auto'
-    }
-
-    return () => {
-      document.body.style.overflow='auto'
-    }
-  }, [isOpen])
 
 
 
   return (
-    <div className='fixed top-0 left-0 w-full h-full bg-black/50 flex items-center justify-center z-50'>
-      <div 
-        className='modal-scroll bg-slate-900 text-white  p-4 rounded-xl shadow-lg w-full max-w-lg h-full max-h-[600px] overflow-y-auto'
+    <div className='bg-black/50 flex items-center justify-center z-50 w-full'>
+      <motion.div 
+        className='bg-slate-900 text-white p-4 mt-5 rounded-xl shadow-lg w-full max-w-4xl mx-auto h-full'
+        initial={{x: -20, y: 20}}
+        animate={{x: 0, y: 0}}
+        transition={{
+          duration: 3,
+          type: 'spring',
+          stiffness: 200
+        }}
       >
-        <header className='flex items-center gap-3 mb-7 relative pt-10 md:p-0'>
-          <div className='bg-[#FE5A7A]/40 p-3 rounded-full border border-[#FE5A7A]'>
-            <FileText color='#FE5A7A' size={20}/>
-          </div>
-          <div className='space-y-0.5'>
-            <h1 className='font-semibold font-mono tracking-normal text-sm md:text-lg'>Help us understand your needs</h1>
-            <p className="md:text-xs text-[11px] font-bold md:font-normal font-sans text-[#ccc] tracking-wide">Provide accurate information in the fields below</p>
-          </div>
-
-          <button className='absolute right-0 -top-1 md:top-1 bg-slate-950 p-1.5 rounded-full cursor-pointer' onClick={() => setIsOpen(false)}>
-            <X/>
-          </button>
+        <header className='text-center flex flex-col items-center mb-7 mx-auto'>
+          <p className='text-white font-semibold max-[475px]:text-[25px] text-[40px] font-sans leading-none text-center'>Help Us Understand <br /> <span className='text-[#FE5A7A]'>Your Needs</span></p>
+          <span className="font-medium w-md mt-3 font-mono max-[475px]:text-[12px] px-2 max-[350px]:max-w-70 max-[475px]:max-w-90 leading-4.5 text-[#ccc] tracking-wider">Answer a few quick questions so we can tailor the best solution for you.</span>
         </header>
 
         {/* Form input section */}
@@ -113,7 +99,7 @@ const Form = ({setIsOpen, isOpen}: Props) => {
               }}
             >
               <Header title='Do you currently have a website?' icon={<Globe className='text-[#FE5A7A]' size={15}/>} />
-              <div className='space-y-2'>
+              <div className='grid md:grid-cols-3 grid-cols-1 gap-2.5 md:gap-2'>
                 <RadioItem 
                   title="Yes, but it's not converting well" 
                   name="question1" 
@@ -149,10 +135,12 @@ const Form = ({setIsOpen, isOpen}: Props) => {
               }}>
               <Header title="What's your biggest challenge right now?" icon={<Target className='text-[#FE5A7A]' size={15}/>}/>
               <div className='space-y-2'>
-                <RadioItem title="Not enough leads / traffic" name='partially'/>
-                <RadioItem title="Traffic but low conversions" name='partially'/>
-                <RadioItem title="Website looks outdated / unprofessional" name='partially'/>
-                <RadioItem title="Don't have a website yet" name='partially'/>
+                <div className='grid md:grid-cols-2 grid-cols-1 gap-2.5 md:gap-2'>
+                  <RadioItem title="Not enough leads / traffic" name='partially'/>
+                  <RadioItem title="Traffic but low conversions" name='partially'/>
+                  <RadioItem title="Website looks outdated / unprofessional" name='partially'/>
+                  <RadioItem title="Don't have a website yet" name='partially'/>
+                </div>
                 <fieldset className='flex items-center font-mono text-xs mt-4 gap-2'>
                   <label htmlFor="others">Others: </label>
                   <input type="text" className='border-b border-b-slate-300 outline-none w-full tracking-wider'/>
@@ -186,7 +174,7 @@ const Form = ({setIsOpen, isOpen}: Props) => {
         <button className='bg-[#FE5A7A] flex justify-self-end mt-5 px-8 py-2 rounded-full font-mono text-sm tracking-widest cursor-pointer hover:-translate-y-1 transition-all duration-600'>
           Submit
         </button>
-      </div>
+      </motion.div>
     </div>
   )
 }

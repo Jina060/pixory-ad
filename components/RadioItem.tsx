@@ -6,11 +6,12 @@ interface RadioItemProps {
   value?: string;
   checked?: boolean;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  gridSpan?: string
 }
 
-const RadioItem = ({title, name, value, checked, onChange} : RadioItemProps) => {
+const RadioItem = ({title, name, value, checked, onChange, gridSpan} : RadioItemProps) => {
   return (
-    <div className='flex gap-2 font-mono border border-slate-700 p-2 rounded-md'>
+    <div className={`flex items-start gap-2 font-mono border border-slate-700 p-2 rounded-md ${gridSpan}`}>
         <input
           type="radio"
           value={value}
