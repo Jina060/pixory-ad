@@ -141,25 +141,24 @@ export default function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.9 }}
-            className="flex flex-col items-center gap-2 mt-3 mb-4"
+            className="flex flex-col items-center gap-2 mt-3 mb-8"
           >
             {/* Label row */}
-            <div className="flex items-center gap-2 text-xs text-white/50 tracking-wide">
-              <span>Spots claimed this month</span>
-              <span className="text-white/20">·</span>
+            <div className="items-center gap-2 text-sm text-white tracking-wide">
+              <span>SPOTS CLAIMED THIS MONTH</span><br />
               <span className="text-white font-medium">13/20 CLAIMED</span>
-              <span className="text-white/20">·</span>
+              <span className="text-white">·</span>
               <span className="text-[#FE5A7A] font-medium">
                 7 SPOTS REMAINING
               </span>
             </div>
 
             {/* Progress bar */}
-            <div className="w-64 sm:w-80 h-1.5 rounded-full bg-white/10 overflow-hidden">
+            <div className="w-64 sm:w-90 h-5 rounded-full bg-white/10 overflow-hidden">
               <motion.div
                 className="h-full rounded-full"
                 style={{
-                  background: "linear-gradient(90deg, #2201DC, #FE5A7A)",
+                  background: "#2201DC",
                 }}
                 initial={{ width: "0%" }}
                 animate={{ width: "65%" }}
