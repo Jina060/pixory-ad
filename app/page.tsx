@@ -8,6 +8,7 @@ import Statistics from "@/components/Statistics";
 import PricingSection from "@/components/Pricing";
 import ComparisonTable from "@/components/ComparisonTable";
 import FAQ from "@/components/FAQ";
+import Team from "@/components/Team";
 
 export default function Home() {
   return (
@@ -33,6 +34,7 @@ export default function Home() {
         <Portfolio />
         <PricingSection />
         <ComparisonTable />
+        <Team />
         <Statistics />
         <FAQ />
       </div>
