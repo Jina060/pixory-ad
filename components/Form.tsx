@@ -315,7 +315,7 @@ const Form = () => {
           </div>
 
           {/* Submit */}
-          <div className='flex justify-end pt-2'>
+          <div className='flex justify-center pt-2'>
             <motion.button
               type='submit'
               whileHover={{ scale: 1.03 }}
