@@ -24,7 +24,7 @@ export default function Home() {
         }
       `}</style>
       <div className="relative overflow-hidden hero-container">
-        <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden -z-10">
           <BackgroundGradients />
         </div>
         <Hero />

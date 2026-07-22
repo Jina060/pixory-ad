@@ -8,37 +8,37 @@ const reviews = [
   {
     name: "David Okoro",
     role: "CEO, Nexaron",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=84&h=84&fit=crop&auto=format",
+    avatar: "/pic33.jpeg",
     text: "Working with Pixory Flow was a game changer for us. From strategy to launch, their team delivered a product that not only looks incredible but works seamlessly.",
   },
   {
     name: "Amara Diallo",
     role: "Founder, MotionX",
-    avatar: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=84&h=84&fit=crop&auto=format",
+    avatar: "/pic11.jpeg",
     text: "The Pixory Flow team understood our vision immediately. They built our platform faster than we thought possible and the result exceeded every expectation.",
   },
   {
     name: "James Kweku",
     role: "CTO, FlowPay",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=84&h=84&fit=crop&auto=format",
+    avatar: "/pic44.jpeg",
     text: "Our fintech dashboard needed to be bulletproof. Pixory Flow delivered clean architecture, pixel-perfect UI, and a backend that handles scale without breaking a sweat.",
   },
   {
     name: "Nadia Essien",
     role: "Head of Brand, Roofy",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=84&h=84&fit=crop&auto=format",
+    avatar: "/pic22.jpeg",
     text: "Our rebrand needed to feel premium and modern. Pixory Flow nailed the identity system, guidelines, and every piece of collateral. Clients notice the difference immediately.",
   },
   {
     name: "Emmanuel Tabi",
     role: "CEO, Lumi Solar",
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=84&h=84&fit=crop&auto=format",
+    avatar: "/pic55.jpeg",
     text: "I've worked with three agencies before Pixory Flow. None came close to this level of communication, quality, and speed. They feel like an extension of our in-house team.",
   },
   {
     name: "Sophia Mensah",
     role: "Product Manager, Sivour Kle",
-    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=84&h=84&fit=crop&auto=format",
+    avatar: "/pic66.jpeg",
     text: "From wireframes to a live product in under three weeks. Their no-code expertise helped us validate fast and the handoff was completely smooth. Highly recommend.",
   },
 ];
@@ -229,7 +229,7 @@ export default function Results() {
   const isInView = useInView(headerRef, { once: true, margin: "-80px" });
 
   return (
-    <section className="relative bg-[#000000] py-20 md:py-25">
+    <section className="relative bg-[#000000] py-16 md:py-25">
       <NodeGrid />
 
       <div

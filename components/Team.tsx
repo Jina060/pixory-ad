@@ -7,13 +7,13 @@ import Image from "next/image";
 const teamMembers = [
   { 
     name: "Ikoe .E. Winyawoko", 
-    role: "CEO & Founder", 
+    role: "Managing Director", 
     image: "/Team/Ikoe.jpeg",
     description: "Visionary leader with 10+ years of experience in digital transformation and strategic innovation."
   },
   { 
     name: "Victoria Ajibade", 
-    role: "Co-Founder & Product Lead", 
+    role: "Product Lead", 
     image: "/Team/Victoria.jpeg",
     description: "Expert in project delivery and client relations, ensuring seamless execution of all initiatives."
   },
@@ -30,7 +30,7 @@ const teamMembers = [
     description: "Full-stack developer with expertise in scalable architectures and cutting-edge technologies."
   },
   { 
-    name: "Jina Kumfa", 
+    name: "Kumfa Jina", 
     role: "Jnr. Developer", 
     image: "/Team/Jina.jpeg",
     description: "Full-stack developer with strong problem-solving skills and development of innovative web solutions."
@@ -82,7 +82,7 @@ function TeamCard({ member, index }: { member: typeof teamMembers[0]; index: num
       onMouseEnter={() => !isMobile && setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onClick={() => isMobile && setHovered(!hovered)}
-      className="flex items-center gap-4 p-4 rounded-2xl border border-white/6 bg-white/[0.02] hover:border-[#2201DC]/30 hover:bg-white/[0.04] transition-all duration-300 cursor-default"
+      className="flex items-center gap-4 p-4 rounded-2xl border border-white/6 bg-white/2 hover:border-[#2201DC]/30 hover:bg-white/4 transition-all duration-300 cursor-default"
     >
       {/* Photo */}
       <div className="relative shrink-0 w-14 h-16 md:w-16 md:h-20 rounded-xl overflow-hidden border border-white/10">
@@ -134,6 +134,17 @@ export default function Team() {
 
   return (
     <section className="w-full bg-black pt-10 pb-20 px-6 overflow-hidden">
+
+         {/* Ambient glow */}
+      <div
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-175 h-75 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse, rgba(34,1,220,0.1) 50%, transparent 100%)",
+          filter: "blur(40px)",
+        }}
+      />
+      
       <div className="max-w-7xl mx-auto">
 
         <div ref={headerRef} className="flex flex-col items-center text-center mb-16">

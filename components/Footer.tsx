@@ -29,33 +29,21 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* CTA Button Container - Relative for sparkle positioning */}
+          {/* CTA Button Container */}
           <div className="relative">
-            {/* Decorative Sparkle - Top Right of Button - Hidden on mobile */}
+            {/* Decorative Sparkle - Hidden on mobile */}
             <div className="hidden md:block absolute -top-5 right-8 opacity-50">
               <div
                 className="absolute w-[22.09px] h-[3.68px] bg-white rounded-[10px]"
-                style={{
-                  transform: "rotate(72.18deg)",
-                  left: "7.42px",
-                  top: "8.07px",
-                }}
+                style={{ transform: "rotate(72.18deg)", left: "7.42px", top: "8.07px" }}
               ></div>
               <div
                 className="absolute w-[22.09px] h-[3.68px] bg-white rounded-[10px]"
-                style={{
-                  transform: "rotate(-12.18deg)",
-                  left: "47.91px",
-                  top: "41.89px",
-                }}
+                style={{ transform: "rotate(-12.18deg)", left: "47.91px", top: "41.89px" }}
               ></div>
               <div
                 className="absolute w-[23px] h-[3px] bg-white rounded-[10px]"
-                style={{
-                  transform: "rotate(120deg)",
-                  left: "32.4px",
-                  top: "18px",
-                }}
+                style={{ transform: "rotate(120deg)", left: "32.4px", top: "18px" }}
               ></div>
             </div>
 
@@ -77,14 +65,12 @@ const Footer = () => {
         <div
           className="px-6 sm:px-8 md:px-14 py-8 md:py-14 flex flex-col gap-6 md:gap-8"
           style={{
-            background:
-              "linear-gradient(0deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)), #2201DC",
+            background: "linear-gradient(0deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)), #2201DC",
             border: "1px solid rgba(255, 255, 255, 0.04)",
           }}
         >
           {/* Top Row - Logo and Copyright */}
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 md:gap-0">
-            {/* Logo */}
             <div className="w-[115px] h-[43px] flex items-center">
               <Image
                 src="/logo-dark.png"
@@ -94,8 +80,6 @@ const Footer = () => {
                 className="object-contain"
               />
             </div>
-
-            {/* Copyright */}
             <p className="text-white text-sm md:text-lg leading-7 text-center">
               © {new Date().getFullYear()} PixoryFlow. All rights reserved.
             </p>
@@ -104,42 +88,48 @@ const Footer = () => {
           {/* Divider Line */}
           <div className="w-full h-px bg-white"></div>
 
+          {/* Company info strip */}
+          <div className="flex justify-center items-center gap-2 text-white/70 text-base text-center flex-wrap">
+            <span className="text-white font-semibold">PixoryFlow LLC</span>
+            <span className="text-white font-bold">·</span>
+            <span>Wyoming, USA</span>
+            <span className="text-white font-bold">·</span>
+            <a
+              href="https://www.pixoryflow.agency"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white hover:underline transition-all"
+            >
+              www.pixoryflow.agency
+            </a>
+          </div>
+
+          {/* Divider Line */}
+          <div className="w-full h-px bg-white/20"></div>
+
           {/* Bottom Row - Contact and Social */}
           <div className="flex flex-col md:flex-row justify-between items-center gap-6 md:gap-0">
-            {/* Contact Info and Links */}
             <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 text-center sm:text-left">
               <span className="text-white text-sm md:text-lg leading-7 break-all">
                 Contact:{" "}
-                <a
-                  href="mailto:info@pixoryflow.agency"
-                  className="hover:underline"
-                >
+                <a href="mailto:info@pixoryflow.agency" className="hover:underline">
                   info@pixoryflow.agency
                 </a>
               </span>
               <span className="text-white text-sm md:text-lg leading-7">•</span>
-              <a
-                href="/privacy-policy"
-                className="text-white text-sm md:text-lg leading-7 hover:underline"
-              >
+              <a href="/privacy-policy" className="text-white text-sm md:text-lg leading-7 hover:underline">
                 Privacy Policy
               </a>
-              {/* <span className="text-white text-sm md:text-lg leading-7">
-              12345678910
-            </span> */}
             </div>
 
             {/* Social Icons */}
             <div className="flex items-center gap-4">
-              {/* Instagram */}
               <a
                 href="https://www.instagram.com/pixoryflow?igsh=MW9rbDhqNG11bGFpNA=="
                 className="text-white hover:opacity-80 transition-opacity"
               >
                 <FaInstagram size={25} />
               </a>
-
-              {/* TikTok */}
               <a
                 href="https://www.tiktok.com/@pixoryflow?_r=1&_t=ZS-9613DuIylUL"
                 target="_blank"
@@ -153,8 +143,6 @@ const Footer = () => {
                   />
                 </svg>
               </a>
-
-              {/* Facebook */}
               <a
                 href="https://www.facebook.com/share/19hoa4c5Re/?mibextid=wwXIfr"
                 target="_blank"
@@ -163,8 +151,6 @@ const Footer = () => {
               >
                 <FaFacebookF size={25} />
               </a>
-
-              {/* X (formerly Twitter) */}
               <a
                 href="https://x.com/pixoryflow?s=21"
                 className="text-white hover:opacity-80 transition-opacity"

@@ -65,14 +65,14 @@ export default function Hero() {
         <div className="relative z-10 mx-auto px-3 text-center">
           <Crown />
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-[78px] font-bold md:font-normal text-white mb-1 leading-tight md:leading-tight">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-[78px] font-semibold md:font-normal text-white mb-7 md:mb-1 leading-tight md:leading-tight">
             <span className="block">
               <StaticText text="Get a Free Website" />
             </span>
 
             <span className="block mt-1 md:mt-0">
               <span className="relative inline-block">
-                <span className="inline-block">
+                <span className="inline-block mb-2 md:mb-0">
                   <StaticText text="Strategy Session" />
                 </span>
 
@@ -173,7 +173,7 @@ export default function Hero() {
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
             <Link
-              href="/contact-us"
+              href="/booking"
               className="hover:scale-105 transition-all duration-300 cursor-pointer"
             >
               <button className="bg-[#2201DC] hover:bg-[#1d4ed8] text-white font-semibold px-10 rounded-full transition-all duration-300 uppercase tracking-wider text-sm border border-white cursor-pointer h-14 w-56 leading-none flex items-center justify-center">
